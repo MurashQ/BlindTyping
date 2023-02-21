@@ -14,11 +14,11 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <Header lang={this.state.lang} speed={this.state.speed} err={this.state.err} />
-        <div className="container">
-          <div className="typingBlock">
-            <div className="inputBlock"><input className="typingLine"></input></div>
+    <div>
+      <Header lang={this.state.lang} speed={this.state.speed} err={this.state.err} />
+        <div className="typingBlock">
+          <div className="inputBlock">
+            <input className="typingLine"></input>
           </div>
         </div>
       </div>
