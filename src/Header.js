@@ -2,7 +2,7 @@ import React from 'react';
 
 function Header(props) {
   return (
-    <div className="container">
+    <header className="container">
       <div className="header-content">
         <span className="lang">{props.lang}</span>
           <span>
@@ -10,6 +10,6 @@ function Header(props) {
             <span className="typeStats">errors {props.err !== null ? props.err : "--"}</span>
           </span>
       </div>
-    </div>);
+    </header>);
 }
 export default Header;

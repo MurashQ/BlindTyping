@@ -4,7 +4,6 @@
 }
 body {
   background: linear-gradient(45deg, #EECFBA, #C5DDE8);
-  font-size: 24px;
   display: block;
   color:darkslategray;
 }
@@ -17,6 +16,7 @@ body {
 .header-content {
   padding-top: 30px;
   padding-bottom: 10px;
+  font-size: 24px;
   display: flex;
   justify-content: space-between;
 }
@@ -31,16 +31,32 @@ body {
   font-size: 18px;
 }
 
-.typingBlock {
-  margin: 0 auto;
-}
-
 .inputBlock {
   max-width: 600px;
-  margin: 100px auto 0;
+  margin: 100px auto 150px;
 }
 
 .typingLine {
-  font-size: 20px;
+  font-size: 18px;
+  color: rgb(31, 52, 52);
   width: 600px;
+  background-color: rgba(255, 255, 255, 0);
+  border-top:rgba(255, 255, 255, 0);
+  border-left:rgba(255, 255, 255, 0);
+  border-right:rgba(255, 255, 255, 0);
+  margin-bottom: 10px;
+}
+
+.typingLine:focus {
+  outline: none;
+}
+
+.printedText {
+  font-size: 19px;
+  color: rgba(48, 80, 80, 0.4);
+}
+
+.textForPrint {
+  font-size: 19px;
+  color: rgb(48, 80, 80);
 }
