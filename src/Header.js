@@ -2,7 +2,7 @@ import React from 'react';
 
 function Header(props) {
   return (
-    <header className="container">
+    <header>
       <div className="header-content">
         <span className="lang">{props.lang}</span>
           <span>

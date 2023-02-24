@@ -8,12 +8,9 @@ body {
   color:darkslategray;
 }
 
-.container {
+.header-content {
   max-width: 900px;
   margin: 0 auto;
-}
-
-.header-content {
   padding-top: 30px;
   padding-bottom: 10px;
   font-size: 24px;
