@@ -7,7 +7,7 @@ function Header(props) {
         <span className="lang">{props.lang}</span>
           <span>
             <span className="typeStats">speed {props.speed !== null ? props.speed : "--"}</span>
-            <span className="typeStats">errors {props.err !== null ? props.err : "--"}</span>
+            <span className="typeStats">errors {props.err !== null ? props.err + "%" : "--"}</span>
           </span>
       </div>
     </header>);

@@ -45,10 +45,17 @@ class App extends React.Component {
   }
 
   getWords() {
-    axios.get(wordsURL).then((response) => {
-      this.setState({printedText: ""});
-      this.setState({textForPrint: response.data.join(" ") + " "});
-    });
+    switch(this.state.lang) {
+      case "Eng words" : {
+        axios.get(wordsURL).then((response) => {
+          this.setState({printedText: ""});
+          this.setState({textForPrint: response.data.join(" ") + " "});
+        });
+        break;
+      }
+      case "Eng text" : 
+      default: break;
+    }
   }
 
   printCheck(value) {
@@ -56,16 +63,17 @@ class App extends React.Component {
       this.timeTmp = performance.now();
       this.lettersTmp = this.state.textForPrint.length;
     }
-    if (value.length === this.state.printedText.length + 1 && value[value.length - 1] === this.state.textForPrint[0]) {
-      this.setState({printedText: this.state.printedText + this.state.textForPrint[0]});
-      this.setState({textForPrint: this.state.textForPrint.slice(1)});
+    if (value.slice(0, this.state.printedText.length) === this.state.printedText && value.slice(this.state.printedText.length) === this.state.textForPrint.slice(0, value.length - this.state.printedText.length)) {
+      this.setState({printedText: this.state.printedText + this.state.textForPrint.slice(0, value.length - this.state.printedText.length)});
+      this.setState({textForPrint: this.state.textForPrint.slice(value.length - this.state.printedText.length)});
       if (this.state.textForPrint.length === 1) {
         this.timeTmp = (performance.now() - this.timeTmp) / 60000;
-        this.setState({err: this.errTmp});
+        this.setState({err: Math.floor((this.errTmp/this.lettersTmp) * 10000)/100});
         this.setState({speed: Math.floor(this.lettersTmp / this.timeTmp)});
         document.getElementsByClassName("typingLine")[0].value = "";
         this.getWords();
       }
+      document.getElementsByClassName("typingLine")[0].style.backgroundColor = "rgba(255, 255, 255, 0.0)";
     }
     else if (value.length === this.state.printedText.length && value === this.state.printedText) {
       document.getElementsByClassName("typingLine")[0].style.backgroundColor = "rgba(255, 255, 255, 0.0)";
