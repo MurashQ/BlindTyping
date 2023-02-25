@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "./Header";
+import Keyboard from "./Keyboard";
 import axios from "axios";
 import "./index.css";
 
@@ -39,7 +40,7 @@ class App extends React.Component {
           <span className="textForPrint">{this.state.textForPrint}</span>
         </div>
       </div>
-      
+      <Keyboard next={this.state.textForPrint}/>
     </div>
     );
   }
