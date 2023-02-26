@@ -4,7 +4,7 @@ import Keyboard from "./Keyboard";
 import axios from "axios";
 import "./index.css";
 
-const wordsURL = "https://random-word-api.herokuapp.com/word?number=7";
+const wordsURL = "https://random-word-api.herokuapp.com/word?number=1";
 
 class App extends React.Component {
   timeTmp = 0;

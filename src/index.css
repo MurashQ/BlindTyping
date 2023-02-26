@@ -42,6 +42,7 @@ body {
   border-left:rgba(255, 255, 255, 0);
   border-right:rgba(255, 255, 255, 0);
   margin-bottom: 10px;
+  transition: all .3s;
 }
 
 .typingLine:focus {
@@ -109,4 +110,8 @@ body {
 .space {
   margin: 0 auto;
   width: 360px;
+}
+
+.helpEffect {
+  background-color: rgb(180, 180, 180);
 }
