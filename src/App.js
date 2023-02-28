@@ -4,7 +4,7 @@ import Keyboard from "./Keyboard";
 import axios from "axios";
 import "./index.css";
 
-const wordsURL = "https://random-word-api.herokuapp.com/word?number=1";
+const wordsURL = "https://random-word-api.herokuapp.com/word?number=7";
 
 class App extends React.Component {
   timeTmp = 0;
@@ -12,7 +12,6 @@ class App extends React.Component {
   errTmp = 0;
   constructor(props) {
     super(props);
-
     this.state = {
       lang: "Eng words",
       speed: null,
@@ -21,13 +20,10 @@ class App extends React.Component {
       textForPrint: "",
     }
     
-    axios.get(wordsURL).then((response) => {
-      this.setState({textForPrint: response.data.join(" ") + " "});
-    });
-
     this.getWords = this.getWords.bind(this);
     this.printCheck = this.printCheck.bind(this);
   }
+
 
   render() {
     return (
@@ -43,6 +39,10 @@ class App extends React.Component {
       <Keyboard next={this.state.textForPrint}/>
     </div>
     );
+  }
+  
+  componentDidMount () {
+    this.getWords();
   }
 
   getWords() {

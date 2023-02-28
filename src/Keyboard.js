@@ -18,7 +18,6 @@ class Keyboard extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.next !== this.props.next && this.props.next !== "") {
-      console.log(prevProps.next, this.props.next)
       if (prevProps.next !== "") {
         this.clearHelpEffect(prevProps.next[0]);
       }
@@ -65,20 +64,20 @@ class Keyboard extends React.Component {
     );
   }
 
-  setHelpEffect(letter) {
-    if (letter === " ") {
+  setHelpEffect(nextLetter) {
+    if (nextLetter === " ") {
       document.getElementById("space").classList.toggle("helpEffect");
     } else {
-      document.getElementById("b" + letter).classList.toggle("helpEffect");
+      document.getElementById("b" + nextLetter.toLowerCase()).classList.toggle("helpEffect");
     }
   }
-  
-  clearHelpEffect(letter) {
-    if (letter === " ") {
+
+  clearHelpEffect(prevLetter) {
+    if (prevLetter === " ") {
       document.getElementById("space").classList.toggle("helpEffect");
     }
     else {
-      document.getElementById("b" + letter).classList.toggle("helpEffect");
+      document.getElementById("b" + prevLetter.toLowerCase()).classList.toggle("helpEffect");
     }
   }
 }
