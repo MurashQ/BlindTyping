@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "./Header";
 import Keyboard from "./Keyboard";
+import Footer from "./Footer";
 import axios from "axios";
 import "./index.css";
 
@@ -37,6 +38,7 @@ class App extends React.Component {
         </div>
       </div>
       <Keyboard next={this.state.textForPrint}/>
+      <Footer />
     </div>
     );
   }

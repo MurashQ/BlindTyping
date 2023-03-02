@@ -3,9 +3,14 @@
   padding: 0;
 }
 body {
-  background: linear-gradient(45deg, #EECFBA, #C5DDE8);
+  background: linear-gradient(45deg, #ffbae8, #b5d1de);
   display: block;
   color:darkslategray;
+}
+
+/* Header */
+header {
+  background-color: rgba(225, 190, 208, 0.5);
 }
 
 .header-content {
@@ -28,6 +33,7 @@ body {
   font-size: 18px;
 }
 
+/* Input block */
 .inputBlock {
   max-width: 600px;
   margin: 150px auto 120px;
@@ -115,3 +121,4 @@ body {
 .helpEffect {
   background-color: rgb(180, 180, 180);
 }
+
