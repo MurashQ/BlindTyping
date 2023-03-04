@@ -58,11 +58,13 @@ header {
 .printedText {
   font-size: 19px;
   color: rgba(48, 80, 80, 0.4);
+  white-space: nowrap;
 }
 
 .textForPrint {
   font-size: 19px;
   color: rgb(48, 80, 80);
+  white-space: nowrap;
 }
 
 
@@ -119,6 +121,6 @@ header {
 }
 
 .helpEffect {
-  background-color: rgb(180, 180, 180);
+  background-color: rgb(156, 152, 152);
 }
 

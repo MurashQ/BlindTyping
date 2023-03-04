@@ -5,7 +5,10 @@ import Footer from "./Footer";
 import axios from "axios";
 import "./index.css";
 
-const wordsURL = "https://random-word-api.herokuapp.com/word?number=7";
+const wordsURL = "https://random-word-api.herokuapp.com/word?number=12";
+const engTextURL = "";
+//укажите, что текст сгенерирован на fish-text.ru
+const ruTextURL = "https://fish-text.ru/get?format=json&number=1";
 
 class App extends React.Component {
   timeTmp = 0;
@@ -51,12 +54,36 @@ class App extends React.Component {
     switch(this.state.lang) {
       case "Eng words" : {
         axios.get(wordsURL).then((response) => {
+          let str = "";
+          let i = 0;
+          while (str.length < 60 && i < response.data.length) {
+            if (response.data[i].length < 11)
+              str = str + response.data[i] + " ";
+            i++;
+          }
           this.setState({printedText: ""});
-          this.setState({textForPrint: response.data.join(" ") + " "});
+          this.setState({textForPrint: str});
         });
         break;
       }
-      case "Eng text" : 
+      case "Eng text" : {
+        axios.request(engTextURL).then((response) => {
+          console.log(response.data);
+        });
+        break;
+      }
+      case "Русские слова" : {
+        axios.request(ruTextURL).then((response) => {
+          console.log(response.data);
+        });
+        break;
+      }
+      case "Русский текст" : {
+        axios.request(ruTextURL).then((response) => {
+          console.log(response.data);
+        });
+        break;
+      }
       default: break;
     }
   }
