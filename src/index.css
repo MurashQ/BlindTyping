@@ -11,6 +11,7 @@ body {
 /* Header */
 header {
   background-color: rgba(225, 190, 208, 0.5);
+  box-shadow: 0 2px 0 #999797;
 }
 
 .header-content {
@@ -90,6 +91,7 @@ header {
   border-style: solid;
   border-radius: 5px;
   padding: 2px 3px;
+  position: relative;
 }
 
 .backspace, .enter, .capsLock, .tab, .shift, .space {
@@ -124,3 +126,20 @@ header {
   background-color: rgb(156, 152, 152);
 }
 
+/* Hands */
+
+.hand1 {
+  display:block;
+}
+.hand1::after {
+  content: "";
+  background-image: url('../img/hand1.png');
+  width: 85px;
+  height: 100px;
+  left: 10px;
+  top: 5px;
+  position: absolute;
+  opacity: 75%;
+  z-index: 5;
+  display:block;
+}

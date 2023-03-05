@@ -89,13 +89,14 @@ class App extends React.Component {
   }
 
   printCheck(value) {
-    if (this.state.printedText.length === 0) {
+    let pl = this.state.printedText.length;
+    if (pl === 0) {
       this.timeTmp = performance.now();
       this.lettersTmp = this.state.textForPrint.length;
     }
-    if (value.slice(0, this.state.printedText.length) === this.state.printedText && value.slice(this.state.printedText.length) === this.state.textForPrint.slice(0, value.length - this.state.printedText.length)) {
-      this.setState({printedText: this.state.printedText + this.state.textForPrint.slice(0, value.length - this.state.printedText.length)});
-      this.setState({textForPrint: this.state.textForPrint.slice(value.length - this.state.printedText.length)});
+    if (value.slice(0, pl) === this.state.printedText && value.slice(pl) === this.state.textForPrint.slice(0, value.length - pl)) {
+      this.setState({printedText: this.state.printedText + this.state.textForPrint.slice(0, value.length - pl)});
+      this.setState({textForPrint: this.state.textForPrint.slice(value.length - pl)});
       if (this.state.textForPrint.length === 1) {
         this.timeTmp = (performance.now() - this.timeTmp) / 60000;
         this.setState({err: Math.floor((this.errTmp/this.lettersTmp) * 10000)/100});
@@ -105,10 +106,10 @@ class App extends React.Component {
       }
       document.getElementsByClassName("typingLine")[0].style.backgroundColor = "rgba(255, 255, 255, 0.0)";
     }
-    else if (value.length === this.state.printedText.length && value === this.state.printedText) {
+    else if (value.length === pl && value === this.state.printedText) {
       document.getElementsByClassName("typingLine")[0].style.backgroundColor = "rgba(255, 255, 255, 0.0)";
     }
-    else if (value.length < this.state.printedText.length) {
+    else if (value.length < pl) {
       this.setState({printedText: this.state.printedText.slice(0, value.length)});
       this.setState({textForPrint: this.state.printedText.slice(value.length) + this.state.textForPrint});
     }
