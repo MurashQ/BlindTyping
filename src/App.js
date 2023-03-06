@@ -8,6 +8,7 @@ import "./index.css";
 const wordsURL = "https://random-word-api.herokuapp.com/word?number=12";
 const engTextURL = "";
 //укажите, что текст сгенерирован на fish-text.ru
+const rusWordsURL = "https://fish-text.ru/get?type=title&format=html&number=4";
 const ruTextURL = "https://fish-text.ru/get?format=json&number=1";
 
 class App extends React.Component {
@@ -17,7 +18,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      lang: "Eng words",
+      lang: "English words",
       speed: null,
       err: null,
       printedText: "",
@@ -40,7 +41,7 @@ class App extends React.Component {
           <span className="textForPrint">{this.state.textForPrint}</span>
         </div>
       </div>
-      <Keyboard next={this.state.textForPrint}/>
+      <Keyboard prev={this.state.printedText} next={this.state.textForPrint} lang={this.state.lang}/>
       <Footer />
     </div>
     );
@@ -52,7 +53,7 @@ class App extends React.Component {
 
   getWords() {
     switch(this.state.lang) {
-      case "Eng words" : {
+      case "English words" : {
         axios.get(wordsURL).then((response) => {
           let str = "";
           let i = 0;
@@ -66,14 +67,14 @@ class App extends React.Component {
         });
         break;
       }
-      case "Eng text" : {
+      case "English text" : {
         axios.request(engTextURL).then((response) => {
           console.log(response.data);
         });
         break;
       }
       case "Русские слова" : {
-        axios.request(ruTextURL).then((response) => {
+        axios.request(rusWordsURL).then((response) => {
           console.log(response.data);
         });
         break;
