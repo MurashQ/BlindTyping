@@ -27,6 +27,7 @@ class App extends React.Component {
     
     this.getWords = this.getWords.bind(this);
     this.printCheck = this.printCheck.bind(this);
+    this.changeLang = this.changeLang.bind(this);
   }
 
 
@@ -34,15 +35,17 @@ class App extends React.Component {
     return (
     <div>
       <Header lang={this.state.lang} speed={this.state.speed} err={this.state.err} />
-      <div className="inputBlock">
+      <div className="dropdownContainer">
         <div className="dropdown">
           <div className="dropbtn">Выбрать язык</div>
           <div className="dropdown-content">
-            <p>English words</p>
-            <p>Русские слова</p>
-            <p>Русский текст</p>
+            <p onClick={() => this.changeLang("English words")}>English words</p>
+            <p onClick={() => this.changeLang("Русские слова")}>Русские слова</p>
+            <p onClick={() => this.changeLang("Русский текст")}>Русский текст</p>
           </div>
         </div>
+      </div>
+      <div className="inputBlock">
         <input className="typingLine" placeholder="print there" onChange={etc => this.printCheck(etc.target.value)}></input>
         <div className="text">
           <span className="printedText">{this.state.printedText}</span>
@@ -57,6 +60,10 @@ class App extends React.Component {
   
   componentDidMount () {
     this.getWords();
+  }
+
+  changeLang = (newLang) => {
+    this.setState({lang: newLang});
   }
 
   getWords() {
