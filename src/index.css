@@ -34,10 +34,48 @@ header {
   font-size: 18px;
 }
 
+/* Dropdown menu (in input block)*/
+.dropdown {
+  position: relative;
+  margin: 0 auto 110px;
+  max-width: 150px;
+  text-align: center;
+}
+
+.dropbtn {
+  color:darkslategray;
+  padding: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: rgba(168, 168, 168, 0.5);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 150px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 8px;
+}
+
+.dropdown-content p {
+  cursor: pointer;
+  color:darkslategray;
+  padding: 8px 10px;
+  display: block;
+}
+
+.dropdownbtn:hover, .dropdown-content p:hover {background-color: rgba(169, 169, 169, 0.5);}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 /* Input block */
 .inputBlock {
   max-width: 600px;
-  margin: 150px auto 120px;
+  margin: 20px auto 100px;
 }
 
 .typingLine {
@@ -137,6 +175,22 @@ header {
   width: 85px;
   height: 100px;
   left: 10px;
+  top: 5px;
+  position: absolute;
+  opacity: 75%;
+  z-index: 5;
+  display:block;
+}
+
+.hand10 {
+  display:block;
+}
+.hand10::after {
+  content: "";
+  background-image: url('../img/hand1.png');
+  width: 85px;
+  height: 100px;
+  right: 10px;
   top: 5px;
   position: absolute;
   opacity: 75%;

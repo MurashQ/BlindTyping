@@ -35,6 +35,14 @@ class App extends React.Component {
     <div>
       <Header lang={this.state.lang} speed={this.state.speed} err={this.state.err} />
       <div className="inputBlock">
+        <div className="dropdown">
+          <div className="dropbtn">Выбрать язык</div>
+          <div className="dropdown-content">
+            <p>English words</p>
+            <p>Русские слова</p>
+            <p>Русский текст</p>
+          </div>
+        </div>
         <input className="typingLine" placeholder="print there" onChange={etc => this.printCheck(etc.target.value)}></input>
         <div className="text">
           <span className="printedText">{this.state.printedText}</span>
