@@ -148,6 +148,7 @@ header {
   border-radius: 5px;
   text-align: center;
   padding-top: 12px;
+  position: relative;
 }
 
 .bSymb2 {
@@ -181,24 +182,113 @@ header {
   background-image: url('../img/hand1.png');
   width: 85px;
   height: 100px;
-  left: 10px;
-  top: 5px;
+  right: -50px;
+  top: 10px;
   position: absolute;
   opacity: 75%;
   z-index: 5;
   display:block;
 }
-
+.hand2 {
+  display:block;
+}
+.hand2::after {
+  content: "";
+  background-image: url('../img/hand2.png');
+  width: 85px;
+  height: 100px;
+  left: 2px;
+  top: 16px;
+  position: absolute;
+  opacity: 75%;
+  z-index: 5;
+  display:block;
+}
+.hand3 {
+  display:block;
+}
+.hand3::after {
+  content: "";
+  background-image: url('../img/hand3.png');
+  width: 85px;
+  height: 100px;
+  left: -15px;
+  top: 18px;
+  position: absolute;
+  opacity: 75%;
+  z-index: 5;
+  display:block;
+}
+.hand4 {
+  display:block;
+}
+.hand4::after {
+  content: "";
+  background-image: url('../img/hand4.png');
+  width: 85px;
+  height: 100px;
+  left: -32px;
+  top: 16px;
+  position: absolute;
+  opacity: 75%;
+  z-index: 5;
+  display:block;
+}
+.hand7 {
+  display:block;
+}
+.hand7::after {
+  content: "";
+  background-image: url('../img/hand7.png');
+  width: 85px;
+  height: 100px;
+  top: 16px;
+  left: -10px;
+  position: absolute;
+  opacity: 75%;
+  z-index: 5;
+  display:block;
+}
+.hand8 {
+  display:block;
+}
+.hand8::after {
+  content: "";
+  background-image: url('../img/hand8.png');
+  width: 85px;
+  height: 100px;
+  top: 18px;
+  left: -25px;
+  position: absolute;
+  opacity: 75%;
+  z-index: 5;
+  display:block;
+}
+.hand9 {
+  display:block;
+}
+.hand9::after {
+  content: "";
+  background-image: url('../img/hand9.png');
+  width: 85px;
+  height: 100px;
+  top: 16px;
+  left: -40px;
+  position: absolute;
+  opacity: 75%;
+  z-index: 5;
+  display:block;
+}
 .hand10 {
   display:block;
 }
 .hand10::after {
   content: "";
-  background-image: url('../img/hand1.png');
+  background-image: url('../img/hand10.png');
   width: 85px;
   height: 100px;
-  right: 10px;
-  top: 5px;
+  top: 10px;
+  left: -50px;
   position: absolute;
   opacity: 75%;
   z-index: 5;

@@ -62,6 +62,12 @@ class App extends React.Component {
     this.getWords();
   }
 
+  componentDidUpdate (prevProps, prevState) {
+    if (prevState.lang !== this.state.lang) {
+      this.getWords();
+    }
+  }
+
   changeLang = (newLang) => {
     this.setState({lang: newLang});
   }
@@ -91,12 +97,16 @@ class App extends React.Component {
       case "Русские слова" : {
         axios.request(rusWordsURL).then((response) => {
           console.log(response.data);
+          this.setState({printedText: ""});
+          this.setState({textForPrint: "ё"});
         });
         break;
       }
       case "Русский текст" : {
         axios.request(ruTextURL).then((response) => {
           console.log(response.data);
+          this.setState({printedText: ""});
+          this.setState({textForPrint: "ё"});
         });
         break;
       }

@@ -14,16 +14,16 @@ const engKeyboardLine4 = [
   ["Z", "z"], ["X", "x"], ["C", "c"], ["V", "v"], ["B", "b"], ["N", "n"], ["M", "m"], ["<", ","], [">", "."], ["/", "?"]
 ];
 const rusKeyboardLine1 = [
-  ["Ё", "ё"], ["!", "1"], ["\"", "2"], ["№", "3"], [";", "4"], ["%", "5"], [":", "6"], ["?", "7"], ["*", "8"], ["(", "9"], [")", "0"], ["_", "-"], ["+", "="],
+  ["Ё", "ё", "`"], ["!", "1"], ["\"", "2"], ["№", "3"], [";", "4"], ["%", "5"], [":", "6"], ["?", "7"], ["*", "8"], ["(", "9"], [")", "0"], ["_", "-"], ["+", "="],
 ];
 const rusKeyboardLine2 = [
-  ["Й", "й"], ["Ц", "ц"], ["У", "у"], ["К", "к"], ["Е", "е"], ["Н", "н"], ["Г", "г"], ["Ш", "ш"], ["Щ", "щ"], ["З", "з"], ["Х", "х"], ["Ъ", "ъ"], ["/","\\"]
+  ["Й", "й", "q"], ["Ц", "ц", "w"], ["У", "у", "e"], ["К", "к", "r"], ["Е", "е", "t"], ["Н", "н", "y"], ["Г", "г", "u"], ["Ш", "ш", "i"], ["Щ", "щ", "o"], ["З", "з", "p"], ["Х", "х", "["], ["Ъ", "ъ", "]"], ["/","\\"]
 ];
 const rusKeyboardLine3 = [
-  ["Ф", "ф"], ["Ы", "ы"], ["В", "в"], ["А", "а"], ["П", "п"], ["Р", "р"], ["О", "о"], ["Л", "л"], ["Д", "д"], ["Ж", "ж"], ["Э", "э"]
+  ["Ф", "ф", "a"], ["Ы", "ы", "s"], ["В", "в", "d"], ["А", "а", "f"], ["П", "п", "g"], ["Р", "р", "h"], ["О", "о", "j"], ["Л", "л", "k"], ["Д", "д", "l"], ["Ж", "ж", ";"], ["Э", "э", "'"]
 ];
 const rusKeyboardLine4 = [
-  ["Я", "я"], ["Ч", "ч"], ["С", "с"], ["М", "м"], ["И", "и"], ["Т", "т"], ["Ь", "ь"], ["Б", "б"], ["Ю", "ю"], [",", "."]
+  ["Я", "я", "z"], ["Ч", "ч", "x"], ["С", "с", "c"], ["М", "м", "v"], ["И", "и", "b"], ["Т", "т", "n"], ["Ь", "ь", "m"], ["Б", "б", ","], ["Ю", "ю", "."], [",", ".", "/"]
 ];
 
 
@@ -63,7 +63,10 @@ class Keyboard extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.next !== this.props.next && this.props.next !== "") {
+    if (this.props.lang !== prevProps.lang) {
+      this.componentDidMount();
+    }
+    else if (prevProps.next !== this.props.next && this.props.next !== "") {
       if (prevProps.next !== "") {
         this.helpEffect(prevProps.next[0]);
       }
@@ -115,31 +118,42 @@ class Keyboard extends React.Component {
       document.getElementById("space").classList.toggle("helpEffect");
     }
     else if (letter === "!") {
+      this.hand("b" + letter.toLowerCase());
+      this.hand("rShift");
       document.getElementById("b1").classList.toggle("helpEffect");
       document.getElementById("rShift").classList.toggle("helpEffect");
     }/******************************************************************/
 
     else if (this.props.lang[0] === "E") { //Только для английской клавиатуры
       if (letter === "\"") {
+        this.hand("b" + toEng(letter.toLowerCase()));
+        this.hand("lShift");
         document.getElementById("b'").classList.toggle("helpEffect");
         document.getElementById("lShift").classList.toggle("helpEffect");
       }
       else if (letter === ":") {
+        this.hand("b" + letter.toLowerCase());
+        this.hand("lShift");
         document.getElementById("b;").classList.toggle("helpEffect");
         document.getElementById("lShift").classList.toggle("helpEffect");
       }
       else if (letter.match(/[a-z]/i) && letter.toUpperCase() === letter) {
-        if(isLeft(letter.toLowerCase()) === true) {
-          document.getElementById("b" + letter.toLowerCase()).classList.toggle("helpEffect");
+        if(isLeft(toEng(letter.toLowerCase())) === true) {
+          this.hand("b" + toEng(letter.toLowerCase()));
+          this.hand("rShift");
+          document.getElementById("b" + toEng(letter.toLowerCase())).classList.toggle("helpEffect");
           document.getElementById("rShift").classList.toggle("helpEffect");
         }
         else {
-          document.getElementById("b" + letter.toLowerCase()).classList.toggle("helpEffect");
+          this.hand("b" + toEng(letter.toLowerCase()));
+          this.hand("lShift");
+          document.getElementById("b" + toEng(letter.toLowerCase())).classList.toggle("helpEffect");
           document.getElementById("lShift").classList.toggle("helpEffect");
         }
       }
       else {
-        document.getElementById("b" + letter).classList.toggle("helpEffect");
+        this.hand("b" + letter);
+        document.getElementById("b" + toEng(letter)).classList.toggle("helpEffect");
       }
     } /******************************************************************/
 
@@ -156,8 +170,39 @@ class Keyboard extends React.Component {
         }
       }
       else {
-        document.getElementById("b" + letter).classList.toggle("helpEffect");
+        this.hand("b" + letter);
+        document.getElementById("b" + toEng(letter)).classList.toggle("helpEffect");
       }
+    } /******************************************************************/
+  }
+
+  hand(l) {
+    switch (l) {
+      case "b1": case "bq": case "ba": case "bz": case "lShift":
+        document.getElementById(l).classList.toggle("hand1");
+        break;
+      case "b2": case "bw": case "bs": case "bx":
+        document.getElementById(l).classList.toggle("hand2");
+        break;
+      case "b3": case "be": case "bd": case "bc":
+        document.getElementById(l).classList.toggle("hand3");
+        break;
+      case "b4": case "b5": case "br": case "bt": case "bf": case "bg": case "bv": case "bb":
+        document.getElementById(l).classList.toggle("hand4");
+        break;
+      case "b6": case "b7": case "by": case "bu": case "bh": case "bj": case "bn": case "bm":
+        document.getElementById(l).classList.toggle("hand7");
+        break;
+      case "b8": case "bi": case "bk": case "b,":
+        document.getElementById(l).classList.toggle("hand8");
+        break;
+      case "b9": case "bo": case "bl": case "b.":
+        document.getElementById(l).classList.toggle("hand9");
+        break;
+      case "b0": case "b-": case "b=": case "bp": case "b[": case "b]": case "b;": case "b'": case "b/": case "b\\": case "rShift":
+        document.getElementById(l).classList.toggle("hand10");
+        break;
+      default: break;
     }
   }
 
@@ -173,6 +218,14 @@ function isLeft(l) {
     case "п": case "я": case "ч": case "с": case "м":
     case "и": return true;
     default: return false;
+  }
+}
+
+function toEng(l) { // чтобы заменить русские символы на английские в ID
+  switch (l) {
+    case "ё": return "`";
+
+    default: return l;
   }
 }
 export default Keyboard;
