@@ -23,7 +23,7 @@ const rusKeyboardLine3 = [
   ["Ф", "ф", "a"], ["Ы", "ы", "s"], ["В", "в", "d"], ["А", "а", "f"], ["П", "п", "g"], ["Р", "р", "h"], ["О", "о", "j"], ["Л", "л", "k"], ["Д", "д", "l"], ["Ж", "ж", ";"], ["Э", "э", "'"]
 ];
 const rusKeyboardLine4 = [
-  ["Я", "я", "z"], ["Ч", "ч", "x"], ["С", "с", "c"], ["М", "м", "v"], ["И", "и", "b"], ["Т", "т", "n"], ["Ь", "ь", "m"], ["Б", "б", ","], ["Ю", "ю", "."], [",", ".", "/"]
+  ["Я", "я", "z"], ["Ч", "ч", "x"], ["С", "с", "c"], ["М", "м", "v"], ["И", "и", "b"], ["Т", "т", "n"], ["Ь", "ь", "m"], ["Б", "б", ","], ["Ю", "ю", "."], [",", "."]
 ];
 
 
@@ -66,14 +66,9 @@ class Keyboard extends React.Component {
     if (this.props.lang !== prevProps.lang) {
       this.componentDidMount();
     }
-    else if (prevProps.next !== this.props.next && this.props.next !== "") {
-      if (prevProps.next !== "") {
-        this.helpEffect(prevProps.next[0]);
-      }
+    if (prevProps.next[0] !== this.props.next[0]) {
+      this.helpEffect(prevProps.next[0]);
       this.helpEffect(this.props.next[0]);
-    }
-    if (this.props.next === "" && this.props.prev !== "") {
-      this.helpEffect(" ");
     }
   }
 
@@ -114,7 +109,10 @@ class Keyboard extends React.Component {
   }
 
   helpEffect(letter) {
-    if (letter === " ") { //общие правила
+    if (letter === undefined) {//общие правила
+
+    }
+    else if (letter === " ") {
       document.getElementById("space").classList.toggle("helpEffect");
     }
     else if (letter === "!") {
@@ -152,7 +150,7 @@ class Keyboard extends React.Component {
         }
       }
       else {
-        this.hand("b" + letter);
+        this.hand("b" + toEng(letter));
         document.getElementById("b" + toEng(letter)).classList.toggle("helpEffect");
       }
     } /******************************************************************/
@@ -161,16 +159,18 @@ class Keyboard extends React.Component {
 
       if ((letter.match(/[а-я]/i) && letter.toUpperCase() === letter) || letter === "Ё") {
         if(isLeft(letter.toLowerCase()) === true) {
+          this.hand("b" + toEng(letter));
           document.getElementById("b" + letter.toLowerCase()).classList.toggle("helpEffect");
           document.getElementById("rShift").classList.toggle("helpEffect");
         }
         else {
+          this.hand("b" + toEng(letter));
           document.getElementById("b" + letter.toLowerCase()).classList.toggle("helpEffect");
           document.getElementById("lShift").classList.toggle("helpEffect");
         }
       }
       else {
-        this.hand("b" + letter);
+        this.hand("b" + toEng(letter));
         document.getElementById("b" + toEng(letter)).classList.toggle("helpEffect");
       }
     } /******************************************************************/
@@ -178,7 +178,7 @@ class Keyboard extends React.Component {
 
   hand(l) {
     switch (l) {
-      case "b1": case "bq": case "ba": case "bz": case "lShift":
+      case "b`": case "b1": case "bq": case "ba": case "bz": case "lShift":
         document.getElementById(l).classList.toggle("hand1");
         break;
       case "b2": case "bw": case "bs": case "bx":
@@ -223,8 +223,15 @@ function isLeft(l) {
 
 function toEng(l) { // чтобы заменить русские символы на английские в ID
   switch (l) {
-    case "ё": return "`";
-
+    case "ё": return "`"; case "й": return "q"; case "ц": return "w"; case "у": return "e";
+    case "к": return "r"; case "е": return "t"; case "н": return "y"; case "г": return "u";
+    case "ш": return "i"; case "щ": return "o"; case "з": return "p"; case "х": return "[";
+    case "ъ": return "]"; case "ф": return "a"; case "ы": return "s"; case "в": return "d";
+    case "а": return "f"; case "п": return "g"; case "р": return "h"; case "о": return "j";
+    case "л": return "k"; case "д": return "l"; case "ж": return ";"; case "э": return "\"";
+    case "я": return "z"; case "ч": return "x"; case "с": return "c"; case "м": return "v";
+    case "и": return "b"; case "т": return "n"; case "ь": return "m"; case "б": return ",";
+    case "ю": return "."; case ".": return "/";
     default: return l;
   }
 }

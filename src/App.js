@@ -8,7 +8,6 @@ import "./index.css";
 const wordsURL = "https://random-word-api.herokuapp.com/word?number=12";
 const engTextURL = "";
 //укажите, что текст сгенерирован на fish-text.ru
-const rusWordsURL = "https://fish-text.ru/get?type=title&format=html&number=4";
 const ruTextURL = "https://fish-text.ru/get?format=json&number=1";
 
 class App extends React.Component {
@@ -69,8 +68,12 @@ class App extends React.Component {
   }
 
   changeLang = (newLang) => {
-    document.getElementsByClassName("typingLine")[0].value = "";
-    this.setState({lang: newLang});
+    if (this.state.lang !== newLang) {
+      document.getElementsByClassName("typingLine")[0].value = "";
+      this.setState({textForPrint: ""});
+      this.setState({printedText: ""});
+      this.setState({lang: newLang});
+    }
   }
 
   getWords() {
@@ -96,10 +99,10 @@ class App extends React.Component {
         break;
       }
       case "Русские слова" : {
-        axios.request(rusWordsURL).then((response) => {
+        axios.request(ruTextURL).then((response) => {
           console.log(response.data);
           this.setState({printedText: ""});
-          this.setState({textForPrint: "ё "});
+          this.setState({textForPrint: "ещё ничего нет "});
         });
         break;
       }
@@ -107,7 +110,7 @@ class App extends React.Component {
         axios.request(ruTextURL).then((response) => {
           console.log(response.data);
           this.setState({printedText: ""});
-          this.setState({textForPrint: "ё "});
+          this.setState({textForPrint: "ещё ничего нет "});
         });
         break;
       }
@@ -120,6 +123,7 @@ class App extends React.Component {
     if (pl === 0) {
       this.timeTmp = performance.now();
       this.lettersTmp = this.state.textForPrint.length;
+      this.errTmp = 0;
     }
     if (value.slice(0, pl) === this.state.printedText && value.slice(pl) === this.state.textForPrint.slice(0, value.length - pl)) {
       this.setState({printedText: this.state.printedText + this.state.textForPrint.slice(0, value.length - pl)});
