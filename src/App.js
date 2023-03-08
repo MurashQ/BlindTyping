@@ -69,6 +69,7 @@ class App extends React.Component {
   }
 
   changeLang = (newLang) => {
+    document.getElementsByClassName("typingLine")[0].value = "";
     this.setState({lang: newLang});
   }
 
@@ -98,7 +99,7 @@ class App extends React.Component {
         axios.request(rusWordsURL).then((response) => {
           console.log(response.data);
           this.setState({printedText: ""});
-          this.setState({textForPrint: "ё"});
+          this.setState({textForPrint: "ё "});
         });
         break;
       }
@@ -106,7 +107,7 @@ class App extends React.Component {
         axios.request(ruTextURL).then((response) => {
           console.log(response.data);
           this.setState({printedText: ""});
-          this.setState({textForPrint: "ё"});
+          this.setState({textForPrint: "ё "});
         });
         break;
       }
