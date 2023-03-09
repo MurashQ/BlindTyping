@@ -102,7 +102,7 @@ class App extends React.Component {
         axios.request(ruTextURL).then((response) => {
           console.log(response.data);
           this.setState({printedText: ""});
-          this.setState({textForPrint: "ещё ничего нет "});
+          this.setState({textForPrint: ".Аещё ничего нет "});
         });
         break;
       }

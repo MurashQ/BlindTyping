@@ -10,28 +10,28 @@ body {
 
 /* Header */
 header {
-  background-color: rgba(225, 190, 208, 0.5);
+  background-color: rgba(225, 190, 208, 0.7);
   box-shadow: 0 2px 0 #999797;
 }
 
 .header-content {
   max-width: 900px;
   margin: 0 auto;
-  padding-top: 30px;
-  padding-bottom: 14px;
+  padding-top: 35px;
+  padding-bottom: 10px;
   font-size: 24px;
   display: flex;
   justify-content: space-between;
 }
 
 .lang {
+  font-size: 26px;
   font-weight: bold;
-  cursor: pointer;
 }
 
 .typeStats {
   padding: 0 10px;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 /* Dropdown menu (in input block)*/
@@ -46,14 +46,14 @@ header {
 .dropdown {
   position: relative;
   margin: 0 auto 110px;
-  max-width: 150px;
+  max-width: 180px;
   text-align: center;
 }
 
 .dropbtn {
   color:darkslategray;
   padding: 10px;
-  font-size: 18px;
+  font-size: 20px;
   cursor: pointer;
   font-weight: 600;
 }
@@ -61,10 +61,11 @@ header {
 .dropdown-content {
   display: none;
   position: absolute;
-  min-width: 150px;
+  min-width: 180px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 2;
   border-radius: 8px;
+  font-size: 20px;
 }
 
 .dropdown-content p {
@@ -82,7 +83,7 @@ header {
 /* Input block */
 .inputBlock {
   max-width: 600px;
-  margin: 130px auto 130px;
+  margin: 140px auto 140px;
 }
 
 .typingLine {
@@ -118,7 +119,7 @@ header {
 
 .keyboard {
   max-width: 780px;
-  margin: 0 auto 110px;
+  margin: 50px auto 110px;
   font-size: 18px;
 }
 
@@ -293,4 +294,35 @@ header {
   opacity: 75%;
   z-index: 5;
   display:block;
+}
+
+/* Footer */
+footer {
+  background-color: rgba(225, 190, 208, 0.7);
+  box-shadow: 0 -2px #999797;
+  display: flex;
+}
+footer > div {
+  flex: 1;
+  padding: 30px 60px;
+}
+.footer-info {
+  border-right: 2px solid;
+  border-color: #999797;
+}
+.footer-links {
+  border-left: 2px solid;
+  border-color: #999797;
+}
+footer > div > h2 {
+  font-size: 22px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+footer > div > p {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+footer > div > p > a {
+  color: darkslategray;
 }
