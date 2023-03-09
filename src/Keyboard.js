@@ -68,7 +68,7 @@ class Keyboard extends React.Component {
     }
     if (prevProps.next[0] !== this.props.next[0]) {
       this.helpEffect(prevProps.next[0], prevProps.lang);
-      this.helpEffect(this.props.next[0], this.props.lang);
+      this.helpEffect(this.props.next[0], this.props.lang, prevProps.next[0]);
     }
   }
 
@@ -108,11 +108,12 @@ class Keyboard extends React.Component {
     );
   }
 
-  helpEffect(letter, lang) {
+  helpEffect(letter, lang, prev) {
     if (letter === undefined) {//общие правила
 
     }
     else if (letter === " ") {
+      this.hand("space", toEng(prev));
       document.getElementById("space").classList.toggle("helpEffect");
     }
     else if (letter === "!") {
@@ -164,13 +165,15 @@ class Keyboard extends React.Component {
     else if (lang[0] === "Р") { //Только для Русской клавиатуры
 
       if ((letter.match(/[а-я]/i) && letter.toUpperCase() === letter) || letter === "Ё") {
-        if(isLeft(letter.toLowerCase()) === true) {
-          this.hand("b" + toEng(letter));
+        if(isLeft(toEng(letter.toLowerCase())) === true) {
+          this.hand("b" + toEng(letter.toLowerCase()));
+          this.hand("rShift");
           document.getElementById("b" + toEng(letter.toLowerCase())).classList.toggle("helpEffect");
           document.getElementById("rShift").classList.toggle("helpEffect");
         }
         else {
-          this.hand("b" + toEng(letter));
+          this.hand("b" + toEng(letter.toLowerCase()));
+          this.hand("lShift");
           document.getElementById("b" + toEng(letter.toLowerCase())).classList.toggle("helpEffect");
           document.getElementById("lShift").classList.toggle("helpEffect");
         }
@@ -182,8 +185,19 @@ class Keyboard extends React.Component {
     } /******************************************************************/
   }
 
-  hand(l) {
+  hand(l, prev) {
     switch (l) {
+      case "space": {
+        if (document.getElementById("space").classList.contains("hand5"))
+          document.getElementById("space").classList.toggle("hand5");
+        else if (document.getElementById("space").classList.contains("hand6"))
+          document.getElementById("space").classList.toggle("hand6");
+        else if (isLeft(prev))
+          document.getElementById("space").classList.toggle("hand6");
+        else
+          document.getElementById("space").classList.toggle("hand5");
+        break;
+      }
       case "b`": case "b1": case "bq": case "ba": case "bz": case "lShift":
         document.getElementById(l).classList.toggle("hand1");
         break;
@@ -222,7 +236,8 @@ function isLeft(l) {
     case "ё": case "й": case "ц": case "у": case "к":
     case "е": case "ф": case "ы": case "в": case "а":
     case "п": case "я": case "ч": case "с": case "м":
-    case "и": return true;
+    case "и": case "1": case "2": case "3": case "4":
+    case "5": case "`": return true;
     default: return false;
   }
 }
