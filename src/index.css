@@ -56,6 +56,7 @@ header {
   font-size: 20px;
   cursor: pointer;
   font-weight: 600;
+  text-decoration: underline;
 }
 
 .dropdown-content {
@@ -180,7 +181,7 @@ header {
 }
 .hand1::after {
   content: "";
-  background-image: url('img/hand1.png');
+  background-image: url('./img/hand1.png');
   width: 85px;
   height: 100px;
   right: -50px;
@@ -195,7 +196,7 @@ header {
 }
 .hand2::after {
   content: "";
-  background-image: url('img/hand2.png');
+  background-image: url('./img/hand2.png');
   width: 85px;
   height: 100px;
   left: 2px;
@@ -210,7 +211,7 @@ header {
 }
 .hand3::after {
   content: "";
-  background-image: url('img/hand3.png');
+  background-image: url('./img/hand3.png');
   width: 85px;
   height: 100px;
   left: -15px;
@@ -225,7 +226,7 @@ header {
 }
 .hand4::after {
   content: "";
-  background-image: url('img/hand4.png');
+  background-image: url('./img/hand4.png');
   width: 85px;
   height: 100px;
   left: -32px;
@@ -240,7 +241,7 @@ header {
 }
 .hand5::after {
   content: "";
-  background-image: url('img/hand5.png');
+  background-image: url('./img/hand5.png');
   width: 85px;
   height: 100px;
   left: -20px;
@@ -255,7 +256,7 @@ header {
 }
 .hand6::after {
   content: "";
-  background-image: url('img/hand6.png');
+  background-image: url('./img/hand6.png');
   width: 85px;
   height: 100px;
   bottom: -20px;
@@ -270,7 +271,7 @@ header {
 }
 .hand7::after {
   content: "";
-  background-image: url('img/hand7.png');
+  background-image: url('./img/hand7.png');
   width: 85px;
   height: 100px;
   top: 16px;
@@ -285,7 +286,7 @@ header {
 }
 .hand8::after {
   content: "";
-  background-image: url('img/hand8.png');
+  background-image: url('./img/hand8.png');
   width: 85px;
   height: 100px;
   top: 18px;
@@ -300,7 +301,7 @@ header {
 }
 .hand9::after {
   content: "";
-  background-image: url('img/hand9.png');
+  background-image: url('./img/hand9.png');
   width: 85px;
   height: 100px;
   top: 16px;
@@ -315,7 +316,7 @@ header {
 }
 .hand10::after {
   content: "";
-  background-image: url('img/hand10.png');
+  background-image: url('./img/hand10.png');
   width: 85px;
   height: 100px;
   top: 10px;
@@ -328,9 +329,10 @@ header {
 
 /* Footer */
 footer {
-  background-color: rgba(225, 190, 208, 0.7);
-  box-shadow: 0 -2px #999797;
+  background-color: rgba(157, 134, 146, 0.7);
+  box-shadow: 0 -2px #777373;
   display: flex;
+  color: rgb(28, 46, 46);
 }
 footer > div {
   flex: 1;
@@ -338,11 +340,11 @@ footer > div {
 }
 .footer-info {
   border-right: 2px solid;
-  border-color: #999797;
+  border-color: #777373;
 }
 .footer-links {
   border-left: 2px solid;
-  border-color: #999797;
+  border-color: #777373;
 }
 footer > div > h2 {
   font-size: 22px;
