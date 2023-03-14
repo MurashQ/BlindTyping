@@ -1,15 +1,14 @@
 import React from "react";
 import Header from "./Header";
 import ChangeLangMenu from "./ChangeLangMenu";
+import InputBlock from "./InputBlock";
 import Keyboard from "./Keyboard";
 import Footer from "./Footer";
 import axios from "axios";
 import "./index.css";
 
 const wordsURL = "https://random-word-api.herokuapp.com/word?number=12";
-const engTextURL = "";
-//укажите, что текст сгенерирован на fish-text.ru
-const ruTextURL = "https://fish-text.ru/get?format=json&number=1";
+const ruTextURL = "https://fish-text.ru/get?format=json&number=1"; //укажите, что текст сгенерирован на fish-text.ru
 
 class App extends React.Component {
   timeTmp = 0;
@@ -34,13 +33,7 @@ class App extends React.Component {
     <div>
       <Header lang={this.state.lang} speed={this.state.speed} err={this.state.err} />
       <ChangeLangMenu changLang={this.changeLang} />
-      <div className="inputBlock">
-        <input className="typingLine" placeholder="" onChange={etc => this.printCheck(etc.target.value)}></input>
-        <div className="text">
-          <span className="printedText">{this.state.printedText}</span>
-          <span className="textForPrint">{this.state.textForPrint}</span>
-        </div>
-      </div>
+      <InputBlock printed={this.state.printedText} forPrint={this.state.textForPrint} printCheck={this.printCheck} />
       <Keyboard prev={this.state.printedText} next={this.state.textForPrint} lang={this.state.lang}/>
       <Footer />
     </div>
@@ -79,12 +72,6 @@ class App extends React.Component {
           }
           this.setState({printedText: ""});
           this.setState({textForPrint: str});
-        });
-        break;
-      }
-      case "English text" : {
-        axios.request(engTextURL).then((response) => {
-          console.log(response.data);
         });
         break;
       }

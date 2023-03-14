@@ -37,8 +37,8 @@ class Keyboard extends React.Component {
       this.componentDidMount();
     }
     if (prevProps.next[0] !== this.props.next[0]) {
-      this.helpEffect(prevProps.next[0], prevProps.lang);
-      this.helpEffect(this.props.next[0], this.props.lang, prevProps.next[0]);
+      helpEffect(prevProps.next[0], prevProps.lang);
+      helpEffect(this.props.next[0], this.props.lang, prevProps.next[0]);
     }
   }
 
@@ -77,79 +77,80 @@ class Keyboard extends React.Component {
       </div>
     );
   }
-
-  helpEffect(letter, lang, prev) {
-    if (letter === undefined) {}//общие правила
-    else if (letter === " ") {
-      hand("space", toEng(prev));
-      document.getElementById("space").classList.toggle("helpEffect");
-    }
-    else if (letter === "!") {
-      hand("b1");
-      hand("rShift");
-      document.getElementById("b1").classList.toggle("helpEffect");
-      document.getElementById("rShift").classList.toggle("helpEffect");
-    }/******************************************************************/
-    else if (lang[0] === "E") { //Только для английской клавиатуры
-      if (letter === "\"") {
-        hand("b'");
-        hand("lShift");
-        document.getElementById("b'").classList.toggle("helpEffect");
-        document.getElementById("lShift").classList.toggle("helpEffect");
-      }
-      else if (letter === ":") {
-        hand("b;");
-        hand("lShift");
-        document.getElementById("b;").classList.toggle("helpEffect");
-        document.getElementById("lShift").classList.toggle("helpEffect");
-      }
-      else if (letter === "?") {
-        hand("b/");
-        hand("lShift");
-        document.getElementById("b/").classList.toggle("helpEffect");
-        document.getElementById("lShift").classList.toggle("helpEffect");
-      }
-      else if (letter.toUpperCase() === letter && letter.match(/[a-z]/i)) {
-        if(isLeft(toEng(letter.toLowerCase())) === true) {
-          hand("b" + letter.toLowerCase());
-          hand("rShift");
-          document.getElementById("b" + letter.toLowerCase()).classList.toggle("helpEffect");
-          document.getElementById("rShift").classList.toggle("helpEffect");
-        }
-        else {
-          hand("b" + letter.toLowerCase());
-          hand("lShift");
-          document.getElementById("b" + letter.toLowerCase()).classList.toggle("helpEffect");
-          document.getElementById("lShift").classList.toggle("helpEffect");
-        }
-      }
-      else {
-        hand("b" + letter);
-        document.getElementById("b" + letter).classList.toggle("helpEffect");
-      }
-    } /******************************************************************/
-    else if (lang[0] === "Р") { //Только для Русской клавиатуры
-      if ((letter.toUpperCase() === letter && letter.match(/[а-я]/i)) || letter === "Ё") {
-        if(isLeft(toEng(letter.toLowerCase())) === true) {
-          hand("b" + toEng(letter.toLowerCase()));
-          hand("rShift");
-          document.getElementById("b" + toEng(letter.toLowerCase())).classList.toggle("helpEffect");
-          document.getElementById("rShift").classList.toggle("helpEffect");
-        }
-        else {
-          hand("b" + toEng(letter.toLowerCase()));
-          hand("lShift");
-          document.getElementById("b" + toEng(letter.toLowerCase())).classList.toggle("helpEffect");
-          document.getElementById("lShift").classList.toggle("helpEffect");
-        }
-      }
-      else {
-        hand("b" + toEng(letter));
-        document.getElementById("b" + toEng(letter)).classList.toggle("helpEffect");
-      }
-    } /******************************************************************/
-  }
 }
+
+function helpEffect(letter, lang, prev) {
+  if (letter === undefined) {}//общие правила
+  else if (letter === " ") {
+    hand("space", toEng(prev));
+    document.getElementById("space").classList.toggle("helpEffect");
+  }
+  else if (letter === "!") {
+    hand("b1");
+    hand("rShift");
+    document.getElementById("b1").classList.toggle("helpEffect");
+    document.getElementById("rShift").classList.toggle("helpEffect");
+  }/******************************************************************/
+  else if (lang[0] === "E") { //Только для английской клавиатуры
+    if (letter === "\"") {
+      hand("b'");
+      hand("lShift");
+      document.getElementById("b'").classList.toggle("helpEffect");
+      document.getElementById("lShift").classList.toggle("helpEffect");
+    }
+    else if (letter === ":") {
+      hand("b;");
+      hand("lShift");
+      document.getElementById("b;").classList.toggle("helpEffect");
+      document.getElementById("lShift").classList.toggle("helpEffect");
+    }
+    else if (letter === "?") {
+      hand("b/");
+      hand("lShift");
+      document.getElementById("b/").classList.toggle("helpEffect");
+      document.getElementById("lShift").classList.toggle("helpEffect");
+    }
+    else if (letter.toUpperCase() === letter && letter.match(/[a-z]/i)) {
+      if(isLeft(toEng(letter.toLowerCase())) === true) {
+        hand("b" + letter.toLowerCase());
+        hand("rShift");
+        document.getElementById("b" + letter.toLowerCase()).classList.toggle("helpEffect");
+        document.getElementById("rShift").classList.toggle("helpEffect");
+      }
+      else {
+        hand("b" + letter.toLowerCase());
+        hand("lShift");
+        document.getElementById("b" + letter.toLowerCase()).classList.toggle("helpEffect");
+        document.getElementById("lShift").classList.toggle("helpEffect");
+      }
+    }
+    else {
+      hand("b" + letter);
+      document.getElementById("b" + letter).classList.toggle("helpEffect");
+    }
+  } /******************************************************************/
+  else if (lang[0] === "Р") { //Только для Русской клавиатуры
+    if ((letter.toUpperCase() === letter && letter.match(/[а-я]/i)) || letter === "Ё") {
+      if(isLeft(toEng(letter.toLowerCase())) === true) {
+        hand("b" + toEng(letter.toLowerCase()));
+        hand("rShift");
+        document.getElementById("b" + toEng(letter.toLowerCase())).classList.toggle("helpEffect");
+        document.getElementById("rShift").classList.toggle("helpEffect");
+      }
+      else {
+        hand("b" + toEng(letter.toLowerCase()));
+        hand("lShift");
+        document.getElementById("b" + toEng(letter.toLowerCase())).classList.toggle("helpEffect");
+        document.getElementById("lShift").classList.toggle("helpEffect");
+      }
+    }
+    else {
+      hand("b" + toEng(letter));
+      document.getElementById("b" + toEng(letter)).classList.toggle("helpEffect");
+    }
+  } /******************************************************************/
+}
+
 function hand(l, prev) {
   switch (l) {
     case "space": {
@@ -192,13 +193,11 @@ function hand(l, prev) {
 }
 function isLeft(l) {
   switch (l) {
-    case "q": case "w": case "e": case "r": case "t":
-    case "a": case "s": case "d": case "f": case "g":
-    case "z": case "x": case "c": case "v": case "b": 
-    case "ё": case "й": case "ц": case "у": case "к":
-    case "е": case "ф": case "ы": case "в": case "а":
-    case "п": case "я": case "ч": case "с": case "м":
-    case "и": case "1": case "2": case "3": case "4":
+    case "q": case "w": case "e": case "r": case "t": case "a": case "s":
+    case "d": case "f": case "g": case "z": case "x": case "c": case "v":
+    case "b": case "ё": case "й": case "ц": case "у": case "к": case "е":
+    case "ф": case "ы": case "в": case "а": case "п": case "я": case "ч":
+    case "с": case "м": case "и": case "1": case "2": case "3": case "4":
     case "5": case "`": return true;
     default: return false;
   }
