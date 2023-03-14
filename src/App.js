@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "./Header";
+import ChangeLangMenu from "./ChangeLangMenu";
 import Keyboard from "./Keyboard";
 import Footer from "./Footer";
 import axios from "axios";
@@ -23,29 +24,18 @@ class App extends React.Component {
       printedText: "",
       textForPrint: "",
     }
-    
     this.getWords = this.getWords.bind(this);
     this.printCheck = this.printCheck.bind(this);
     this.changeLang = this.changeLang.bind(this);
   }
 
-
   render() {
     return (
     <div>
       <Header lang={this.state.lang} speed={this.state.speed} err={this.state.err} />
-      <div className="dropdownContainer">
-        <div className="dropdown">
-          <div className="dropbtn">Выбрать язык</div>
-          <div className="dropdown-content">
-            <p onClick={() => this.changeLang("English words")}>English words</p>
-            <p onClick={() => this.changeLang("Русские слова")}>Русские слова</p>
-            <p onClick={() => this.changeLang("Русский текст")}>Русский текст</p>
-          </div>
-        </div>
-      </div>
+      <ChangeLangMenu changLang={this.changeLang} />
       <div className="inputBlock">
-        <input className="typingLine" placeholder="print there" onChange={etc => this.printCheck(etc.target.value)}></input>
+        <input className="typingLine" placeholder="" onChange={etc => this.printCheck(etc.target.value)}></input>
         <div className="text">
           <span className="printedText">{this.state.printedText}</span>
           <span className="textForPrint">{this.state.textForPrint}</span>
@@ -149,7 +139,5 @@ class App extends React.Component {
       document.getElementsByClassName("typingLine")[0].style.backgroundColor = "rgba(255, 0, 0, 0.5)";
     }
   }
-
 }
-
 export default App;

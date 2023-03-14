@@ -1,40 +1,20 @@
 import React from 'react';
 import KeyboardButton from './KeyboardButton';
 
-const engKeyboardLine1 = [
-  ["~", "`"], ["!", "1"], ["@", "2"], ["#", "3"], ["$", "4"], ["%", "5"], ["^", "6"], ["&", "7"], ["*", "8"], ["(", "9"], [")", "0"], ["_", "-"], ["+", "="],
-];
-const engKeyboardLine2 = [
-  ["Q", "q"], ["W", "w"], ["E", "e"], ["R", "r"], ["T", "t"], ["Y", "y"], ["U", "u"], ["I", "i"], ["O", "o"], ["P", "p"], ["{", "["], ["}", "]"], ["|","\\"]
-];
-const engKeyboardLine3 = [
-  ["A", "a"], ["S", "s"], ["D", "d"], ["F", "f"], ["G", "g"], ["H", "h"], ["J", "j"], ["K", "k"], ["L", "l"], [":", ";"], ['"', "'"]
-];
-const engKeyboardLine4 = [
-  ["Z", "z"], ["X", "x"], ["C", "c"], ["V", "v"], ["B", "b"], ["N", "n"], ["M", "m"], ["<", ","], [">", "."], ["?", "/"]
-];
-const rusKeyboardLine1 = [
-  ["Ё", "ё", "`"], ["!", "1"], ["\"", "2"], ["№", "3"], [";", "4"], ["%", "5"], [":", "6"], ["?", "7"], ["*", "8"], ["(", "9"], [")", "0"], ["_", "-"], ["+", "="],
-];
-const rusKeyboardLine2 = [
-  ["Й", "й", "q"], ["Ц", "ц", "w"], ["У", "у", "e"], ["К", "к", "r"], ["Е", "е", "t"], ["Н", "н", "y"], ["Г", "г", "u"], ["Ш", "ш", "i"], ["Щ", "щ", "o"], ["З", "з", "p"], ["Х", "х", "["], ["Ъ", "ъ", "]"], ["/","\\"]
-];
-const rusKeyboardLine3 = [
-  ["Ф", "ф", "a"], ["Ы", "ы", "s"], ["В", "в", "d"], ["А", "а", "f"], ["П", "п", "g"], ["Р", "р", "h"], ["О", "о", "j"], ["Л", "л", "k"], ["Д", "д", "l"], ["Ж", "ж", ";"], ["Э", "э", "'"]
-];
-const rusKeyboardLine4 = [
-  ["Я", "я", "z"], ["Ч", "ч", "x"], ["С", "с", "c"], ["М", "м", "v"], ["И", "и", "b"], ["Т", "т", "n"], ["Ь", "ь", "m"], ["Б", "б", ","], ["Ю", "ю", "."], [",", ".", "/"]
-];
-
+const engKeyboardLine1 = [["~", "`"], ["!", "1"], ["@", "2"], ["#", "3"], ["$", "4"], ["%", "5"], ["^", "6"], ["&", "7"], ["*", "8"], ["(", "9"], [")", "0"], ["_", "-"], ["+", "="]];
+const engKeyboardLine2 = [["Q", "q"], ["W", "w"], ["E", "e"], ["R", "r"], ["T", "t"], ["Y", "y"], ["U", "u"], ["I", "i"], ["O", "o"], ["P", "p"], ["{", "["], ["}", "]"], ["|","\\"]];
+const engKeyboardLine3 = [["A", "a"], ["S", "s"], ["D", "d"], ["F", "f"], ["G", "g"], ["H", "h"], ["J", "j"], ["K", "k"], ["L", "l"], [":", ";"], ['"', "'"]];
+const engKeyboardLine4 = [["Z", "z"], ["X", "x"], ["C", "c"], ["V", "v"], ["B", "b"], ["N", "n"], ["M", "m"], ["<", ","], [">", "."], ["?", "/"]];
+const rusKeyboardLine1 = [["Ё", "ё", "`"], ["!", "1"], ["\"", "2"], ["№", "3"], [";", "4"], ["%", "5"], [":", "6"], ["?", "7"], ["*", "8"], ["(", "9"], [")", "0"], ["_", "-"], ["+", "="],];
+const rusKeyboardLine2 = [["Й", "й", "q"], ["Ц", "ц", "w"], ["У", "у", "e"], ["К", "к", "r"], ["Е", "е", "t"], ["Н", "н", "y"], ["Г", "г", "u"], ["Ш", "ш", "i"], ["Щ", "щ", "o"], ["З", "з", "p"], ["Х", "х", "["], ["Ъ", "ъ", "]"], ["/","\\"]];
+const rusKeyboardLine3 = [["Ф", "ф", "a"], ["Ы", "ы", "s"], ["В", "в", "d"], ["А", "а", "f"], ["П", "п", "g"], ["Р", "р", "h"], ["О", "о", "j"], ["Л", "л", "k"], ["Д", "д", "l"], ["Ж", "ж", ";"], ["Э", "э", "'"]];
+const rusKeyboardLine4 = [["Я", "я", "z"], ["Ч", "ч", "x"], ["С", "с", "c"], ["М", "м", "v"], ["И", "и", "b"], ["Т", "т", "n"], ["Ь", "ь", "m"], ["Б", "б", ","], ["Ю", "ю", "."], [",", ".", "/"]];
 
 class Keyboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      l1: [],
-      l2: [],
-      l3: [],
-      l4: []
+      l1: [], l2: [], l3: [], l4: []
     }
   }
 
@@ -42,21 +22,11 @@ class Keyboard extends React.Component {
     switch (this.props.lang) {
       case "English words" :
       case "English text" :
-        this.setState({
-          l1: engKeyboardLine1,
-          l2: engKeyboardLine2,
-          l3: engKeyboardLine3,
-          l4: engKeyboardLine4 
-        });
+        this.setState({l1: engKeyboardLine1, l2: engKeyboardLine2, l3: engKeyboardLine3, l4: engKeyboardLine4});
         break;
       case "Русские слова" :
       case "Русский текст" :
-        this.setState({
-          l1: rusKeyboardLine1,
-          l2: rusKeyboardLine2,
-          l3: rusKeyboardLine3,
-          l4: rusKeyboardLine4
-        });
+        this.setState({l1: rusKeyboardLine1, l2: rusKeyboardLine2, l3: rusKeyboardLine3, l4: rusKeyboardLine4});
         break;
       default : break;
     }
@@ -109,125 +79,117 @@ class Keyboard extends React.Component {
   }
 
   helpEffect(letter, lang, prev) {
-    if (letter === undefined) {//общие правила
-
-    }
+    if (letter === undefined) {}//общие правила
     else if (letter === " ") {
-      this.hand("space", toEng(prev));
+      hand("space", toEng(prev));
       document.getElementById("space").classList.toggle("helpEffect");
     }
     else if (letter === "!") {
-      this.hand("b1");
-      this.hand("rShift");
+      hand("b1");
+      hand("rShift");
       document.getElementById("b1").classList.toggle("helpEffect");
       document.getElementById("rShift").classList.toggle("helpEffect");
     }/******************************************************************/
-
     else if (lang[0] === "E") { //Только для английской клавиатуры
       if (letter === "\"") {
-        this.hand("b'");
-        this.hand("lShift");
+        hand("b'");
+        hand("lShift");
         document.getElementById("b'").classList.toggle("helpEffect");
         document.getElementById("lShift").classList.toggle("helpEffect");
       }
       else if (letter === ":") {
-        this.hand("b;");
-        this.hand("lShift");
+        hand("b;");
+        hand("lShift");
         document.getElementById("b;").classList.toggle("helpEffect");
         document.getElementById("lShift").classList.toggle("helpEffect");
       }
       else if (letter === "?") {
-        this.hand("b/");
-        this.hand("lShift");
+        hand("b/");
+        hand("lShift");
         document.getElementById("b/").classList.toggle("helpEffect");
         document.getElementById("lShift").classList.toggle("helpEffect");
       }
-      else if (letter.match(/[a-z]/i) && letter.toUpperCase() === letter) {
-        if(isLeft(letter.toLowerCase()) === true) {
-          this.hand("b" + letter.toLowerCase());
-          this.hand("rShift");
+      else if (letter.toUpperCase() === letter && letter.match(/[a-z]/i)) {
+        if(isLeft(toEng(letter.toLowerCase())) === true) {
+          hand("b" + letter.toLowerCase());
+          hand("rShift");
           document.getElementById("b" + letter.toLowerCase()).classList.toggle("helpEffect");
           document.getElementById("rShift").classList.toggle("helpEffect");
         }
         else {
-          this.hand("b" + letter.toLowerCase());
-          this.hand("lShift");
+          hand("b" + letter.toLowerCase());
+          hand("lShift");
           document.getElementById("b" + letter.toLowerCase()).classList.toggle("helpEffect");
           document.getElementById("lShift").classList.toggle("helpEffect");
         }
       }
       else {
-        this.hand("b" + letter);
+        hand("b" + letter);
         document.getElementById("b" + letter).classList.toggle("helpEffect");
       }
     } /******************************************************************/
-
     else if (lang[0] === "Р") { //Только для Русской клавиатуры
-
-      if ((letter.match(/[а-я]/i) && letter.toUpperCase() === letter) || letter === "Ё") {
+      if ((letter.toUpperCase() === letter && letter.match(/[а-я]/i)) || letter === "Ё") {
         if(isLeft(toEng(letter.toLowerCase())) === true) {
-          this.hand("b" + toEng(letter.toLowerCase()));
-          this.hand("rShift");
+          hand("b" + toEng(letter.toLowerCase()));
+          hand("rShift");
           document.getElementById("b" + toEng(letter.toLowerCase())).classList.toggle("helpEffect");
           document.getElementById("rShift").classList.toggle("helpEffect");
         }
         else {
-          this.hand("b" + toEng(letter.toLowerCase()));
-          this.hand("lShift");
+          hand("b" + toEng(letter.toLowerCase()));
+          hand("lShift");
           document.getElementById("b" + toEng(letter.toLowerCase())).classList.toggle("helpEffect");
           document.getElementById("lShift").classList.toggle("helpEffect");
         }
       }
       else {
-        this.hand("b" + toEng(letter));
+        hand("b" + toEng(letter));
         document.getElementById("b" + toEng(letter)).classList.toggle("helpEffect");
       }
     } /******************************************************************/
   }
-
-  hand(l, prev) {
-    switch (l) {
-      case "space": {
-        if (document.getElementById("space").classList.contains("hand5"))
-          document.getElementById("space").classList.toggle("hand5");
-        else if (document.getElementById("space").classList.contains("hand6"))
-          document.getElementById("space").classList.toggle("hand6");
-        else if (isLeft(prev))
-          document.getElementById("space").classList.toggle("hand6");
-        else
-          document.getElementById("space").classList.toggle("hand5");
-        break;
-      }
-      case "b`": case "b1": case "bq": case "ba": case "bz": case "lShift":
-        document.getElementById(l).classList.toggle("hand1");
-        break;
-      case "b2": case "bw": case "bs": case "bx":
-        document.getElementById(l).classList.toggle("hand2");
-        break;
-      case "b3": case "be": case "bd": case "bc":
-        document.getElementById(l).classList.toggle("hand3");
-        break;
-      case "b4": case "b5": case "br": case "bt": case "bf": case "bg": case "bv": case "bb":
-        document.getElementById(l).classList.toggle("hand4");
-        break;
-      case "b6": case "b7": case "by": case "bu": case "bh": case "bj": case "bn": case "bm":
-        document.getElementById(l).classList.toggle("hand7");
-        break;
-      case "b8": case "bi": case "bk": case "b,":
-        document.getElementById(l).classList.toggle("hand8");
-        break;
-      case "b9": case "bo": case "bl": case "b.":
-        document.getElementById(l).classList.toggle("hand9");
-        break;
-      case "b0": case "b-": case "b=": case "bp": case "b[": case "b]": case "b;": case "b'": case "b/": case "b\\": case "rShift":
-        document.getElementById(l).classList.toggle("hand10");
-        break;
-      default: break;
-    }
-  }
-
 }
-
+function hand(l, prev) {
+  switch (l) {
+    case "space": {
+      if (document.getElementById("space").classList.contains("hand5"))
+        document.getElementById("space").classList.toggle("hand5");
+      else if (document.getElementById("space").classList.contains("hand6"))
+        document.getElementById("space").classList.toggle("hand6");
+      else if (isLeft(prev))
+        document.getElementById("space").classList.toggle("hand6");
+      else
+        document.getElementById("space").classList.toggle("hand5");
+      break;
+    }
+    case "b`": case "b1": case "bq": case "ba": case "bz": case "lShift":
+      document.getElementById(l).classList.toggle("hand1");
+      break;
+    case "b2": case "bw": case "bs": case "bx":
+      document.getElementById(l).classList.toggle("hand2");
+      break;
+    case "b3": case "be": case "bd": case "bc":
+      document.getElementById(l).classList.toggle("hand3");
+      break;
+    case "b4": case "b5": case "br": case "bt": case "bf": case "bg": case "bv": case "bb":
+      document.getElementById(l).classList.toggle("hand4");
+      break;
+    case "b6": case "b7": case "by": case "bu": case "bh": case "bj": case "bn": case "bm":
+      document.getElementById(l).classList.toggle("hand7");
+      break;
+    case "b8": case "bi": case "bk": case "b,":
+      document.getElementById(l).classList.toggle("hand8");
+      break;
+    case "b9": case "bo": case "bl": case "b.":
+      document.getElementById(l).classList.toggle("hand9");
+      break;
+    case "b0": case "b-": case "b=": case "bp": case "b[": case "b]": case "b;": case "b'": case "b/": case "b\\": case "rShift":
+      document.getElementById(l).classList.toggle("hand10");
+      break;
+    default: break;
+  }
+}
 function isLeft(l) {
   switch (l) {
     case "q": case "w": case "e": case "r": case "t":
@@ -241,7 +203,6 @@ function isLeft(l) {
     default: return false;
   }
 }
-
 function toEng(l) { // чтобы заменить русские символы на английские в ID
   switch (l) {
     case "ё": return "`"; case "й": return "q"; case "ц": return "w"; case "у": return "e";
