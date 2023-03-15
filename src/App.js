@@ -11,21 +11,19 @@ const wordsURL = "https://random-word-api.herokuapp.com/word?number=12";
 const ruTextURL = "https://fish-text.ru/get?format=json&number=1"; //укажите, что текст сгенерирован на fish-text.ru
 
 class App extends React.Component {
-  timeTmp = 0;
-  lettersTmp = 0;
-  errTmp = 0;
   constructor(props) {
     super(props);
     this.state = {
       lang: "English words",
-      speed: null,
-      err: null,
+      speed: "",
+      err: "",
       printedText: "",
       textForPrint: "",
     }
     this.getWords = this.getWords.bind(this);
-    this.printCheck = this.printCheck.bind(this);
-    this.changeLang = this.changeLang.bind(this);
+    this.setText = this.setText.bind(this);
+    this.endPrinting = this.endPrinting.bind(this);
+    this.backspaceInput = this.backspaceInput.bind(this);
   }
 
   render() {
@@ -33,7 +31,7 @@ class App extends React.Component {
     <div>
       <Header lang={this.state.lang} speed={this.state.speed} err={this.state.err} />
       <ChangeLangMenu changLang={this.changeLang} />
-      <InputBlock printed={this.state.printedText} forPrint={this.state.textForPrint} printCheck={this.printCheck} />
+      <InputBlock printed={this.state.printedText} forPrint={this.state.textForPrint} printCheck={this.printCheck} endPrinting={this.endPrinting} setText={this.setText} backspaceInput={this.backspaceInput} />
       <Keyboard prev={this.state.printedText} next={this.state.textForPrint} lang={this.state.lang}/>
       <Footer />
     </div>
@@ -95,36 +93,19 @@ class App extends React.Component {
     }
   }
 
-  printCheck(value) {
-    let pl = this.state.printedText.length;
-    if (pl === 0) {
-      this.timeTmp = performance.now();
-      this.lettersTmp = this.state.textForPrint.length;
-      this.errTmp = 0;
-    }
-    if (value.slice(0, pl) === this.state.printedText && value.slice(pl) === this.state.textForPrint.slice(0, value.length - pl)) {
-      this.setState({printedText: this.state.printedText + this.state.textForPrint.slice(0, value.length - pl)});
-      this.setState({textForPrint: this.state.textForPrint.slice(value.length - pl)});
-      if (this.state.textForPrint.length === 1) {
-        this.timeTmp = (performance.now() - this.timeTmp) / 60000;
-        this.setState({err: Math.floor((this.errTmp/this.lettersTmp) * 10000)/100});
-        this.setState({speed: Math.floor(this.lettersTmp / this.timeTmp)});
-        document.getElementsByClassName("typingLine")[0].value = "";
-        this.getWords();
-      }
-      document.getElementsByClassName("typingLine")[0].style.backgroundColor = "rgba(255, 255, 255, 0.0)";
-    }
-    else if (value.length === pl && value === this.state.printedText) {
-      document.getElementsByClassName("typingLine")[0].style.backgroundColor = "rgba(255, 255, 255, 0.0)";
-    }
-    else if (value.length < pl) {
-      this.setState({printedText: this.state.printedText.slice(0, value.length)});
-      this.setState({textForPrint: this.state.printedText.slice(value.length) + this.state.textForPrint});
-    }
-    else {
-      this.errTmp += 1;
-      document.getElementsByClassName("typingLine")[0].style.backgroundColor = "rgba(255, 0, 0, 0.5)";
-    }
+  setText(value, pl) {
+    this.setState({printedText: this.state.printedText + this.state.textForPrint.slice(0, value.length - pl)});
+    this.setState({textForPrint: this.state.textForPrint.slice(value.length - pl)});
+  }
+  endPrinting(errTmp, speedTmp) {
+    this.setState({err: errTmp});
+    this.setState({speed: speedTmp});
+    document.getElementsByClassName("typingLine")[0].value = "";
+    this.getWords();
+  }
+  backspaceInput(value) {
+    this.setState({printedText: this.state.printedText.slice(0, value.length)});
+    this.setState({textForPrint: this.state.printedText.slice(value.length) + this.state.textForPrint});
   }
 }
 export default App;
