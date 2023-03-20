@@ -16,9 +16,9 @@ class ChangeLangMenu extends React.Component {
         <div className="dropdown">
           <div className="dropbtn">Выбрать язык</div>
           <div className="dropdown-content">
-            <p onClick={() => this.props.changLang(this.state.e1)}>English words</p>
             <p onClick={() => this.props.changLang(this.state.r1)}>Русские слова</p>
             <p onClick={() => this.props.changLang(this.state.r2)}>Русский текст</p>
+            <p onClick={() => this.props.changLang(this.state.e1)}>English words</p>
           </div>
         </div>
       </div>

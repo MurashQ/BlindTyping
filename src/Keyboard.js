@@ -79,6 +79,9 @@ class Keyboard extends React.Component {
   }
 }
 
+// Можно было проще, сразу догадался только до вот этого 
+// Может быть когда-нибудь переделаю, но не сейчас
+// Нужно было писать в компоненте KeyboardButton.js :(
 function helpEffect(letter, lang, prev) {
   if (letter === undefined) {}//общие правила
   else if (letter === " ") {
@@ -130,7 +133,49 @@ function helpEffect(letter, lang, prev) {
     }
   } /******************************************************************/
   else if (lang[0] === "Р") { //Только для Русской клавиатуры
-    if ((letter.toUpperCase() === letter && letter.match(/[а-я]/i)) || letter === "Ё") {
+    if (letter === "\"") {
+      hand("b2");
+      hand("rShift");
+      document.getElementById("b2").classList.toggle("helpEffect");
+      document.getElementById("rShift").classList.toggle("helpEffect");
+    }
+    else if (letter === ":") {
+      hand("b6");
+      hand("rShift");
+      document.getElementById("b6").classList.toggle("helpEffect");
+      document.getElementById("rShift").classList.toggle("helpEffect");
+    }
+    else if (letter === ",") {
+      hand("b/");
+      hand("lShift");
+      document.getElementById("b/").classList.toggle("helpEffect");
+      document.getElementById("lShift").classList.toggle("helpEffect");
+    }
+    else if (letter === ";") {
+      hand("b4");
+      hand("rShift");
+      document.getElementById("b4").classList.toggle("helpEffect");
+      document.getElementById("rShift").classList.toggle("helpEffect");
+    }
+    else if (letter === "?") {
+      hand("b7");
+      hand("lShift");
+      document.getElementById("b7").classList.toggle("helpEffect");
+      document.getElementById("lShift").classList.toggle("helpEffect");
+    }
+    else if (letter === "(") {
+      hand("b9");
+      hand("lShift");
+      document.getElementById("b9").classList.toggle("helpEffect");
+      document.getElementById("lShift").classList.toggle("helpEffect");
+    }
+    else if (letter === ")") {
+      hand("b0");
+      hand("lShift");
+      document.getElementById("b0").classList.toggle("helpEffect");
+      document.getElementById("lShift").classList.toggle("helpEffect");
+    }
+    else if ((letter.toUpperCase() === letter && letter.match(/[а-я]/i)) || letter === "Ё") {
       if(isLeft(toEng(letter.toLowerCase())) === true) {
         hand("b" + toEng(letter.toLowerCase()));
         hand("rShift");
@@ -209,7 +254,7 @@ function toEng(l) { // чтобы заменить русские символы
     case "ш": return "i"; case "щ": return "o"; case "з": return "p"; case "х": return "[";
     case "ъ": return "]"; case "ф": return "a"; case "ы": return "s"; case "в": return "d";
     case "а": return "f"; case "п": return "g"; case "р": return "h"; case "о": return "j";
-    case "л": return "k"; case "д": return "l"; case "ж": return ";"; case "э": return "\"";
+    case "л": return "k"; case "д": return "l"; case "ж": return ";"; case "э": return "'";
     case "я": return "z"; case "ч": return "x"; case "с": return "c"; case "м": return "v";
     case "и": return "b"; case "т": return "n"; case "ь": return "m"; case "б": return ",";
     case "ю": return "."; case ".": return "/";

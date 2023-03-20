@@ -8,13 +8,13 @@ import axios from "axios";
 import "./index.css";
 
 const wordsURL = "https://random-word-api.herokuapp.com/word?number=12";
-const ruTextURL = "https://fish-text.ru/get?format=json&number=1"; //укажите, что текст сгенерирован на fish-text.ru
+const ruTextURL = "https://fish-text.ru/get?format=json&number=4"; //укажите, что текст сгенерирован на fish-text.ru
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      lang: "English words",
+      lang: "Русские слова",
       speed: "",
       err: "",
       printedText: "",
@@ -75,9 +75,19 @@ class App extends React.Component {
       }
       case "Русские слова" : {
         axios.request(ruTextURL).then((response) => {
-          console.log(response.data);
+          let str = "";
+          let respText = response.data.text.replace(/[^a-zа-яё\s]/gi, "").toLowerCase();
+          respText = respText.split(" ");
+          respText = respText.sort(() => Math.random() - 0.5);
+          for (let i = 0; i < respText.length; i++) {
+            if (respText[i].length > 3)
+              str = str + respText[i] + " ";
+            if (str.length > 60)
+              break;
+          }
+          console.log (str, respText);
           this.setState({printedText: ""});
-          this.setState({textForPrint: ".Аещё ничего нет "});
+          this.setState({textForPrint: str});
         });
         break;
       }
