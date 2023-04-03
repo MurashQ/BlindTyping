@@ -9,6 +9,8 @@ const rusKeyboardLine1 = [["Ё", "ё", "`"], ["!", "1"], ["\"", "2"], ["№", "3
 const rusKeyboardLine2 = [["Й", "й", "q"], ["Ц", "ц", "w"], ["У", "у", "e"], ["К", "к", "r"], ["Е", "е", "t"], ["Н", "н", "y"], ["Г", "г", "u"], ["Ш", "ш", "i"], ["Щ", "щ", "o"], ["З", "з", "p"], ["Х", "х", "["], ["Ъ", "ъ", "]"], ["/","\\"]];
 const rusKeyboardLine3 = [["Ф", "ф", "a"], ["Ы", "ы", "s"], ["В", "в", "d"], ["А", "а", "f"], ["П", "п", "g"], ["Р", "р", "h"], ["О", "о", "j"], ["Л", "л", "k"], ["Д", "д", "l"], ["Ж", "ж", ";"], ["Э", "э", "'"]];
 const rusKeyboardLine4 = [["Я", "я", "z"], ["Ч", "ч", "x"], ["С", "с", "c"], ["М", "м", "v"], ["И", "и", "b"], ["Т", "т", "n"], ["Ь", "ь", "m"], ["Б", "б", ","], ["Ю", "ю", "."], [",", ".", "/"]];
+//в массивах записаны все клавиши клавиатуры со стандартными раскладками: qwerty и йцукен
+//последний элемент каждого внутреннего массива (например engKeyboardKine2[0][1] === q или rusKeyboardLine3[0][2]) идет в id клавиши в HTML
 
 class Keyboard extends React.Component {
   constructor(props) {
@@ -18,7 +20,7 @@ class Keyboard extends React.Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount() { //При монтировании компонента он сразу наполняется символами клавиатуры (массивов)
     switch (this.props.lang) {
       case "English words" :
       case "English text" :
@@ -33,10 +35,10 @@ class Keyboard extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.lang !== prevProps.lang) {
+    if (this.props.lang !== prevProps.lang) { //Если изменился язык, меняется раскладка
       this.componentDidMount();
     }
-    if (prevProps.next[0] !== this.props.next[0]) {
+    if (prevProps.next[0] !== this.props.next[0]) { //добавляет и убирает вспомогательный эффект по this.props.next
       helpEffect(prevProps.next[0], prevProps.lang);
       helpEffect(this.props.next[0], this.props.lang, prevProps.next[0]);
     }
@@ -79,9 +81,9 @@ class Keyboard extends React.Component {
   }
 }
 
-// Можно было проще, сразу догадался только до вот этого 
+// Можно было проще, но сразу не догадался
 // Может быть когда-нибудь переделаю, но не сейчас
-// Нужно было писать в компоненте KeyboardButton.js :(
+// Нужно было писать этот метод в компоненте KeyboardButton.js, тогда не обязательно было бы использовать id в html
 function helpEffect(letter, lang, prev) {
   if (letter === undefined) {}//общие правила
   else if (letter === " ") {
@@ -89,9 +91,9 @@ function helpEffect(letter, lang, prev) {
     document.getElementById("space").classList.toggle("helpEffect");
   }
   else if (letter === "!") {
-    hand("b1");
-    hand("rShift");
-    document.getElementById("b1").classList.toggle("helpEffect");
+    hand("b1"); // для символа '!' добавляет руку ("b1 - id в html документе")
+    hand("rShift"); // и для shift
+    document.getElementById("b1").classList.toggle("helpEffect"); //клавиши также подсвечиваются
     document.getElementById("rShift").classList.toggle("helpEffect");
   }/******************************************************************/
   else if (lang[0] === "E") { //Только для английской клавиатуры
@@ -113,8 +115,8 @@ function helpEffect(letter, lang, prev) {
       document.getElementById("b/").classList.toggle("helpEffect");
       document.getElementById("lShift").classList.toggle("helpEffect");
     }
-    else if (letter.toUpperCase() === letter && letter.match(/[a-z]/i)) {
-      if(isLeft(toEng(letter.toLowerCase())) === true) {
+    else if (letter.toUpperCase() === letter && letter.match(/[a-z]/i)) { //для всех прописных (заглавных) букв
+      if(isLeft(toEng(letter.toLowerCase())) === true) { //они деляться на левые и правые
         hand("b" + letter.toLowerCase());
         hand("rShift");
         document.getElementById("b" + letter.toLowerCase()).classList.toggle("helpEffect");
@@ -127,7 +129,9 @@ function helpEffect(letter, lang, prev) {
         document.getElementById("lShift").classList.toggle("helpEffect");
       }
     }
-    else {
+    else { //для всех остальных символов, в том числе не учтенных программой, 
+      //если попадется что-то не стандартное (хотя api со словами такого не выдает),
+      //то программа сломается.
       hand("b" + letter);
       document.getElementById("b" + letter).classList.toggle("helpEffect");
     }
@@ -175,8 +179,8 @@ function helpEffect(letter, lang, prev) {
       document.getElementById("b0").classList.toggle("helpEffect");
       document.getElementById("lShift").classList.toggle("helpEffect");
     }
-    else if ((letter.toUpperCase() === letter && letter.match(/[а-я]/i)) || letter === "Ё") {
-      if(isLeft(toEng(letter.toLowerCase())) === true) {
+    else if ((letter.toUpperCase() === letter && letter.match(/[а-я]/i)) || letter === "Ё") { //для всех прописных (заглавных) букв
+      if(isLeft(toEng(letter.toLowerCase())) === true) { //они деляться на левые и правые
         hand("b" + toEng(letter.toLowerCase()));
         hand("rShift");
         document.getElementById("b" + toEng(letter.toLowerCase())).classList.toggle("helpEffect");
@@ -189,16 +193,18 @@ function helpEffect(letter, lang, prev) {
         document.getElementById("lShift").classList.toggle("helpEffect");
       }
     }
-    else {
+    else { //для всех остальных символов, в том числе не учтенных программой, 
+      //если попадется что-то не стандартное (хотя api со словами такого не выдает),
+      //то программа сломается.
       hand("b" + toEng(letter));
       document.getElementById("b" + toEng(letter)).classList.toggle("helpEffect");
     }
   } /******************************************************************/
 }
 
-function hand(l, prev) {
+function hand(l, prev) { //добавляет и убирает эффект руки (добавлением класса css)
   switch (l) {
-    case "space": {
+    case "space": { //пробел выбирается относительно предыдущей клавиши
       if (document.getElementById("space").classList.contains("hand5"))
         document.getElementById("space").classList.toggle("hand5");
       else if (document.getElementById("space").classList.contains("hand6"))
@@ -209,7 +215,7 @@ function hand(l, prev) {
         document.getElementById("space").classList.toggle("hand5");
       break;
     }
-    case "b`": case "b1": case "bq": case "ba": case "bz": case "lShift":
+    case "b`": case "b1": case "bq": case "ba": case "bz": case "lShift": //каждой клавише своя рука
       document.getElementById(l).classList.toggle("hand1");
       break;
     case "b2": case "bw": case "bs": case "bx":
@@ -236,7 +242,7 @@ function hand(l, prev) {
     default: break;
   }
 }
-function isLeft(l) {
+function isLeft(l) { //возвращает true если клавиша относиться к левой руке, иначе false
   switch (l) {
     case "q": case "w": case "e": case "r": case "t": case "a": case "s":
     case "d": case "f": case "g": case "z": case "x": case "c": case "v":
@@ -247,7 +253,8 @@ function isLeft(l) {
     default: return false;
   }
 }
-function toEng(l) { // чтобы заменить русские символы на английские в ID
+function toEng(l) { //для каждого пердусмотренного символа возвращает соответствующий символ с английской раскладкой
+  // чтобы заменить русские символы на английские в ID (для getElementById)
   switch (l) {
     case "ё": return "`"; case "й": return "q"; case "ц": return "w"; case "у": return "e";
     case "к": return "r"; case "е": return "t"; case "н": return "y"; case "г": return "u";
