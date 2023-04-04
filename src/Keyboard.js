@@ -129,11 +129,11 @@ function helpEffect(letter, lang, prev) {
         document.getElementById("lShift").classList.toggle("helpEffect");
       }
     }
-    else { //для всех остальных символов, в том числе не учтенных программой, 
-      //если попадется что-то не стандартное (хотя api со словами такого не выдает),
-      //то программа сломается.
-      hand("b" + letter);
-      document.getElementById("b" + letter).classList.toggle("helpEffect");
+    else {
+      if (document.getElementById("b" + toEng(letter)) !== null) {
+        hand("b" + letter);
+        document.getElementById("b" + letter).classList.toggle("helpEffect");
+      }
     }
   } /******************************************************************/
   else if (lang[0] === "Р") { //Только для Русской клавиатуры
@@ -179,6 +179,10 @@ function helpEffect(letter, lang, prev) {
       document.getElementById("b0").classList.toggle("helpEffect");
       document.getElementById("lShift").classList.toggle("helpEffect");
     }
+    else if (letter === "-") {
+      hand("b-");
+      document.getElementById("b-").classList.toggle("helpEffect");
+    }
     else if ((letter.toUpperCase() === letter && letter.match(/[а-я]/i)) || letter === "Ё") { //для всех прописных (заглавных) букв
       if(isLeft(toEng(letter.toLowerCase())) === true) { //они деляться на левые и правые
         hand("b" + toEng(letter.toLowerCase()));
@@ -193,11 +197,11 @@ function helpEffect(letter, lang, prev) {
         document.getElementById("lShift").classList.toggle("helpEffect");
       }
     }
-    else { //для всех остальных символов, в том числе не учтенных программой, 
-      //если попадется что-то не стандартное (хотя api со словами такого не выдает),
-      //то программа сломается.
-      hand("b" + toEng(letter));
-      document.getElementById("b" + toEng(letter)).classList.toggle("helpEffect");
+    else {
+      if (document.getElementById("b" + toEng(letter)) !== null) {
+        hand("b" + toEng(letter));
+        document.getElementById("b" + toEng(letter)).classList.toggle("helpEffect");
+      }
     }
   } /******************************************************************/
 }

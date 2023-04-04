@@ -7,10 +7,11 @@ import Footer from "./Footer";
 import axios from "axios";
 import "./index.css";
 
-const wordsURL = "https://random-word-api.herokuapp.com/word?number=12";
+const wordsURL = "https://random-word-api.herokuapp.com/word?number=10";
 const ruTextURL = "https://fish-text.ru/get?format=json&number=8"; //укажите, что текст сгенерирован на fish-text.ru
 
 class App extends React.Component {
+  wordsTmp = []; //хранит текст полученный из запроса
   constructor(props) {
     super(props);
     this.state = {
@@ -54,6 +55,7 @@ class App extends React.Component {
       this.setState({textForPrint: ""}); // убирает старый текст для ввода
       this.setState({printedText: ""});
       this.setState({lang: newLang});   // изменяет язык тем самым вызывая getWords()
+      this.wordsTmp = "";
     }
   }
 
@@ -63,7 +65,7 @@ class App extends React.Component {
         axios.get(wordsURL).then((response) => { // В response.data находится массив слов
           let str = "";
           let i = 0;
-          while (str.length < 60 && i < response.data.length) { //добавляет к строке по одному слову пока строка не превысит размер в 60 символов
+          while (str.length < 65 && i < response.data.length) { //добавляет к строке по одному слову пока строка не превысит размер в 60 символов
             if (response.data[i].length < 11)
               str = str + response.data[i] + " "; //Между каждым словом и в конце строки стоит пробел
             i++;
@@ -75,27 +77,58 @@ class App extends React.Component {
       }
       case "Русские слова" : { //Выбрано поле Русские слова в меню ChangeLangMenu
         axios.request(ruTextURL).then((response) => { //response.data содержит объект типа {status: "", text: ""}
-          let str = "";                               //response.data.text содержит нужный текст в виде строки
-          let respText = response.data.text.replace(/[^a-zа-яё\s]/gi, "").toLowerCase(); //из текста удаляется все кроме букв и пробелов
-          respText = respText.split(" "); //слова переводятся в массив
-          respText = respText.sort(() => Math.random() - 0.5); //массив слов перемешивается
-          for (let i = 0; i < respText.length; i++) { //слова из массива переписываются в массив
-            if (respText[i].length > 3) //пропускаем слово если оно короче 3 символов
-              str = str + respText[i] + " ";
-            if (str.length > 60) //если строка длиньше 60 символов выходим из цикла
-              break;
+          if (this.wordsTmp.length === 0) { //Если раньше еще не получали слов
+            let str = "";                               //response.data.text содержит нужный текст в виде строки
+            this.wordsTmp = response.data.text.replace(/[^a-zа-яё\s]/gi, "").toLowerCase(); //из текста удаляется все кроме букв и пробелов
+            this.wordsTmp = this.wordsTmp.split(" "); //слова переводятся в массив
+            this.wordsTmp = this.wordsTmp.sort(() => Math.random() - 0.5); //массив слов перемешивается
+            for (let i = 0; i < this.wordsTmp.length; i++) { //слова из массива переписываются в массив
+              if (this.wordsTmp[0].length > 3) //пропускаем слово если оно короче 3 символов
+                str = str + this.wordsTmp[0] + " ";
+              if (str.length > 50) //если строка длиньше 50 символов выходим из цикла
+                break;
+              this.wordsTmp.splice(0, 1);
+            }
+            this.setState({printedText: ""});
+            this.setState({textForPrint: str}); //Выводим на экран полученный текст
           }
-          this.setState({printedText: ""}); 
-          this.setState({textForPrint: str}); //Выводим на экран полученный текст
+          else { //Если оставались какие-то слова в wordsTmp используем их
+            let str = "";
+            for (let i = 0; i < this.wordsTmp.length; i++) { //слова из массива переписываются в массив
+              if (this.wordsTmp[0].length > 3) //пропускаем слово если оно короче 3 символов
+                str = str + this.wordsTmp[0] + " ";
+              if (str.length > 50) //если строка длиньше 60 символов выходим из цикла
+                break;
+                this.wordsTmp.splice(0, 1);
+            }
+            this.setState({printedText: ""});
+            this.setState({textForPrint: str}); //Выводим на экран полученный текст
+          }
         });
         break;
       }
       case "Русский текст" : { //Выбрано поле Русский текст в меню ChangeLangMenu
-        axios.request(ruTextURL).then((response) => {
-          console.log(response.data);
+        if (this.wordsTmp.length === 0) {
+          axios.request(ruTextURL).then((response) => { //Получаем то же что и в "Русские слова"
+            this.wordsTmp = response.data.text.split(" "); // делаем все то же что и в "Русские слова", но не удаляем знаки припенаний
+            let str = "";
+            while (this.wordsTmp.length > 0 && str.length < 45) {
+              str = str + this.wordsTmp[0] + " ";
+              this.wordsTmp.splice(0, 1);
+            }
+            this.setState({printedText: ""});
+            this.setState({textForPrint: str});
+          });
+        }
+        else {
+          let str = "";
+          while (this.wordsTmp.length > 0 && str.length < 45) {
+            str = str + this.wordsTmp[0] + " ";
+            this.wordsTmp.splice(0, 1);
+          }
           this.setState({printedText: ""});
-          this.setState({textForPrint: "ещё ничего нет "});
-        });
+          this.setState({textForPrint: str});
+        }
         break;
       }
       default: break;
