@@ -3,15 +3,14 @@
   padding: 0;
 }
 body {
-  background: linear-gradient(45deg, #ffbae8, #b5d1de);
+  background-color: #808A9F;
   display: block;
-  color:darkslategray;
+  color: #eee;
 }
 
 /* Header */
 header {
-  background-color: rgba(225, 190, 208, 0.7);
-  box-shadow: 0 2px 0 #999797;
+  background-color: #5b4a73;
 }
 
 .header-content {
@@ -41,6 +40,7 @@ header {
   top: 30px;
   right: 0;
   left: 0;
+  border-radius: 8px;
 }
 
 .dropdown {
@@ -48,15 +48,17 @@ header {
   margin: 0 auto 110px;
   max-width: 180px;
   text-align: center;
+  background-color: #5b4a73;
 }
 
 .dropbtn {
-  color:darkslategray;
   padding: 10px;
   font-size: 20px;
   cursor: pointer;
   font-weight: 600;
+  display: block;
   text-decoration: underline;
+  border-radius: 8px;
 }
 
 .dropdown-content {
@@ -67,16 +69,17 @@ header {
   z-index: 2;
   border-radius: 8px;
   font-size: 20px;
+  background-color: #5b4a73;
 }
 
 .dropdown-content p {
   cursor: pointer;
-  color:darkslategray;
   padding: 8px 10px;
   display: block;
+  border-radius: 8px;
 }
 
-.dropdownbtn:hover, .dropdown-content p:hover {background-color: rgba(169, 169, 169, 0.5);}
+.dropbtn:hover, .dropdown-content p:hover {background-color: rgba(169, 169, 169, 0.5);}
 .dropdown:hover .dropdown-content {
   display: block;
 }
@@ -89,7 +92,6 @@ header {
 
 .typingLine {
   font-size: 18px;
-  color: rgb(31, 52, 52);
   width: 600px;
   background-color: rgba(255, 255, 255, 0);
   border-top:rgba(255, 255, 255, 0);
@@ -105,13 +107,11 @@ header {
 
 .printedText {
   font-size: 19px;
-  color: rgba(48, 80, 80, 0.4);
   white-space: nowrap;
 }
 
 .textForPrint {
   font-size: 19px;
-  color: rgb(48, 80, 80);
   white-space: nowrap;
 }
 
@@ -329,32 +329,29 @@ header {
 
 /* Footer */
 footer {
-  background-color: rgba(157, 134, 146, 0.7);
-  box-shadow: 0 -2px #777373;
+  background-color: #2C497F;
   display: flex;
-  color: rgb(28, 46, 46);
+  white-space: nowrap;
 }
 footer > div {
   flex: 1;
-  padding: 30px 60px;
+  padding: 40px 80px;
 }
 .footer-info {
-  border-right: 2px solid;
   border-color: #777373;
 }
 .footer-links {
-  border-left: 2px solid;
   border-color: #777373;
 }
 footer > div > h2 {
   font-size: 22px;
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 }
 footer > div > p {
   font-size: 20px;
   margin-bottom: 8px;
 }
 footer > div > p > a {
-  color: darkslategray;
+  color: #eee;
 }
