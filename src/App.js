@@ -66,7 +66,7 @@ class App extends React.Component {
           let str = "";
           let i = 0;
           while (str.length < 65 && i < response.data.length) { //добавляет к строке по одному слову пока строка не превысит размер в 60 символов
-            if (response.data[i].length < 11)
+            if (response.data[i].length < 13)
               str = str + response.data[i] + " "; //Между каждым словом и в конце строки стоит пробел
             i++;
           }

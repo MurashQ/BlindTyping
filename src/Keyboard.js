@@ -145,9 +145,9 @@ function helpEffect(letter, lang, prev) {
     }
     else if (letter === ":") {
       hand("b6");
-      hand("rShift");
+      hand("lShift");
       document.getElementById("b6").classList.toggle("helpEffect");
-      document.getElementById("rShift").classList.toggle("helpEffect");
+      document.getElementById("lShift").classList.toggle("helpEffect");
     }
     else if (letter === ",") {
       hand("b/");

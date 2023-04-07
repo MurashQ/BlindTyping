@@ -8,6 +8,10 @@ body {
   color: #eee;
 }
 
+input{
+  color: #ddd;
+}
+
 /* Header */
 header {
   background-color: #5b4a73;
@@ -108,6 +112,7 @@ header {
 .printedText {
   font-size: 19px;
   white-space: nowrap;
+  color: #aeb3b4;
 }
 
 .textForPrint {

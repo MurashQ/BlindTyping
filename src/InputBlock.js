@@ -28,6 +28,7 @@ class InputBlock extends React.Component {
       this.setState({timeTmp: performance.now()}); //начальное время
       this.setState({errTmp: 0});  //начальное количество ошибок
       this.setState({lettersTmp: this.props.forPrint.length}); //изначальная длинна строки для ввода
+      this.bs = true;
     }
     if (value.slice(0, pl) === this.props.printed && value.slice(pl) === this.props.forPrint.slice(0, value.length - pl)) {
       this.props.setText(value, pl); //строка для печати полностью введена
