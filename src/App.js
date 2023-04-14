@@ -83,10 +83,12 @@ class App extends React.Component {
             this.wordsTmp = this.wordsTmp.split(" "); //слова переводятся в массив
             this.wordsTmp = this.wordsTmp.sort(() => Math.random() - 0.5); //массив слов перемешивается
             for (let i = 0; i < this.wordsTmp.length; i++) { //слова из массива переписываются в массив
-              if (this.wordsTmp[0].length > 3) //пропускаем слово если оно короче 3 символов
+              if (this.wordsTmp[0].length > 3 && this.wordsTmp[0].length < 15) //пропускаем слово если оно короче 3 символов
                 str = str + this.wordsTmp[0] + " ";
-              if (str.length > 50) //если строка длиньше 50 символов выходим из цикла
+              if (str.length > 50) {//если строка длиньше 50 символов выходим из цикла
+                this.wordsTmp.splice(0, 1);
                 break;
+              }
               this.wordsTmp.splice(0, 1);
             }
             this.setState({printedText: ""});
