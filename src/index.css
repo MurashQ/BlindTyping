@@ -6,6 +6,7 @@ body {
   background-color: #808A9F;
   display: block;
   color: #eee;
+  min-width: 900px;
 }
 
 input{
@@ -336,7 +337,6 @@ header {
 footer {
   background-color: #5b4a73;
   display: flex;
-  white-space: nowrap;
 }
 footer > div {
   flex: 1;
