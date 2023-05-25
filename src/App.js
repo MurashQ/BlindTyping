@@ -1,6 +1,5 @@
 import React from "react";
 import Header from "./Header";
-import ChangeLangMenu from "./ChangeLangMenu";
 import InputBlock from "./InputBlock";
 import Keyboard from "./Keyboard";
 import Footer from "./Footer";
@@ -30,8 +29,7 @@ class App extends React.Component {
   render() {
     return (
     <div>
-      <Header lang={this.state.lang} speed={this.state.speed} err={this.state.err} />
-      <ChangeLangMenu changLang={this.changeLang} />
+      <Header lang={this.state.lang} speed={this.state.speed} err={this.state.err} changLang={this.changeLang} />
       <InputBlock printed={this.state.printedText} forPrint={this.state.textForPrint} printCheck={this.printCheck} endPrinting={this.endPrinting} setText={this.setText} backspaceInput={this.backspaceInput} />
       <Keyboard prev={this.state.printedText} next={this.state.textForPrint} lang={this.state.lang}/>
       <Footer />
