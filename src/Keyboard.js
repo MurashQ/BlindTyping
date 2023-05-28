@@ -1,14 +1,16 @@
 import React from 'react';
 import KeyboardButton from './KeyboardButton';
 
-const engKeyboardLine1 = [["~", "`"], ["!", "1"], ["@", "2"], ["#", "3"], ["$", "4"], ["%", "5"], ["^", "6"], ["&", "7"], ["*", "8"], ["(", "9"], [")", "0"], ["_", "-"], ["+", "="]];
-const engKeyboardLine2 = [["Q", "q"], ["W", "w"], ["E", "e"], ["R", "r"], ["T", "t"], ["Y", "y"], ["U", "u"], ["I", "i"], ["O", "o"], ["P", "p"], ["{", "["], ["}", "]"], ["|","\\"]];
-const engKeyboardLine3 = [["A", "a"], ["S", "s"], ["D", "d"], ["F", "f"], ["G", "g"], ["H", "h"], ["J", "j"], ["K", "k"], ["L", "l"], [":", ";"], ['"', "'"]];
-const engKeyboardLine4 = [["Z", "z"], ["X", "x"], ["C", "c"], ["V", "v"], ["B", "b"], ["N", "n"], ["M", "m"], ["<", ","], [">", "."], ["?", "/"]];
-const rusKeyboardLine1 = [["Ё", "ё", "`"], ["!", "1"], ["\"", "2"], ["№", "3"], [";", "4"], ["%", "5"], [":", "6"], ["?", "7"], ["*", "8"], ["(", "9"], [")", "0"], ["_", "-"], ["+", "="],];
-const rusKeyboardLine2 = [["Й", "й", "q"], ["Ц", "ц", "w"], ["У", "у", "e"], ["К", "к", "r"], ["Е", "е", "t"], ["Н", "н", "y"], ["Г", "г", "u"], ["Ш", "ш", "i"], ["Щ", "щ", "o"], ["З", "з", "p"], ["Х", "х", "["], ["Ъ", "ъ", "]"], ["/","\\"]];
-const rusKeyboardLine3 = [["Ф", "ф", "a"], ["Ы", "ы", "s"], ["В", "в", "d"], ["А", "а", "f"], ["П", "п", "g"], ["Р", "р", "h"], ["О", "о", "j"], ["Л", "л", "k"], ["Д", "д", "l"], ["Ж", "ж", ";"], ["Э", "э", "'"]];
-const rusKeyboardLine4 = [["Я", "я", "z"], ["Ч", "ч", "x"], ["С", "с", "c"], ["М", "м", "v"], ["И", "и", "b"], ["Т", "т", "n"], ["Ь", "ь", "m"], ["Б", "б", ","], ["Ю", "ю", "."], [",", ".", "/"]];
+//каждый элемент массива - кнопка типа [значене1, значение2, рука, часть клавиатуры]
+//значение1 - нажатие с шифтом, значение2 - нажатие без шифта, рука - палец на руке (см /src/img), часть клавиатуры - левая или правая
+const engKeyboardLine1 = [["~", "`", "h1", "l"], ["!", "1", "h1", "l"], ["@", "2", "h2", "l"], ["#", "3", "h3", "l"], ["$", "4", "h4", "l"], ["%", "5", "h4", "l"], ["^", "6", "h7", "r"], ["&", "7", "h7", "r"], ["*", "8", "h8", "r"], ["(", "9", "h9", "r"], [")", "0", "h10", "r"], ["_", "-", "h10", "r"], ["+", "=", "h10", "r"]];
+const engKeyboardLine2 = [["Q", "q", "h1", "l"], ["W", "w", "h2", "l"], ["E", "e", "h3", "l"], ["R", "r", "h4", "l"], ["T", "t", "h4", "l"], ["Y", "y", "h7", "r"], ["U", "u", "h7", "r"], ["I", "i", "h8", "r"], ["O", "o", "h9", "r"], ["P", "p", "h10", "r"], ["{", "[", "h10", "r"], ["}", "]", "h10", "r"], ["|","\\", "h10", "r"]];
+const engKeyboardLine3 = [["A", "a", "h1", "l"], ["S", "s", "h2", "l"], ["D", "d", "h3", "l"], ["F", "f", "h4", "l"], ["G", "g", "h4", "l"], ["H", "h", "h7", "r"], ["J", "j", "h7", "r"], ["K", "k", "h8", "r"], ["L", "l", "h9", "r"], [":", ";", "h10", "r"], ['"', "'", "h10", "r"]];
+const engKeyboardLine4 = [["Z", "z", "h1", "l"], ["X", "x", "h2", "l"], ["C", "c", "h3", "l"], ["V", "v", "h4", "l"], ["B", "b", "h4", "l"], ["N", "n", "h7", "r"], ["M", "m", "h7", "r"], ["<", ",", "h8", "r"], [">", ".", "h9", "r"], ["?", "/", "h10", "r"]];
+const rusKeyboardLine1 = [["Ё", "ё", "h1", "l"], ["!", "1", "h1", "l"], ["\"", "2", "h2", "l"], ["№", "3", "h3", "l"], [";", "4", "h4", "l"], ["%", "5", "h4", "l"], [":", "6", "h7", "r"], ["?", "7", "h7", "r"], ["*", "8", "h8", "r"], ["(", "9", "h9", "r"], [")", "0", "h10", "r"], ["_", "-", "h10", "r"], ["+", "=", "h10", "r"]];
+const rusKeyboardLine2 = [["Й", "й", "h1", "l"], ["Ц", "ц", "h2", "l"], ["У", "у", "h3", "l"], ["К", "к", "h4", "l"], ["Е", "е", "h4", "l"], ["Н", "н", "h7", "r"], ["Г", "г", "h7", "r"], ["Ш", "ш", "h8", "r"], ["Щ", "щ", "h9", "r"], ["З", "з", "h10", "r"], ["Х", "х", "h10", "r"], ["Ъ", "ъ", "h10", "r"], ["/","\\", "h10", "r"]];
+const rusKeyboardLine3 = [["Ф", "ф", "h1", "l"], ["Ы", "ы", "h2", "l"], ["В", "в", "h3", "l"], ["А", "а", "h4", "l"], ["П", "п", "h4", "l"], ["Р", "р", "h7", "r"], ["О", "о", "h7", "r"], ["Л", "л", "h8", "r"], ["Д", "д", "h9", "r"], ["Ж", "ж", "h10", "r"], ["Э", "э", "h10", "r"]];
+const rusKeyboardLine4 = [["Я", "я", "h1", "l"], ["Ч", "ч", "h2", "l"], ["С", "с", "h3", "l"], ["М", "м", "h4", "l"], ["И", "и", "h4", "l"], ["Т", "т", "h7", "r"], ["Ь", "ь", "h7", "r"], ["Б", "б", "h8", "r"], ["Ю", "ю", "h9", "r"], [",", ".", "h10", "r"]];
 //в массивах записаны все клавиши клавиатуры со стандартными раскладками: qwerty и йцукен
 //последний элемент каждого внутреннего массива (например engKeyboardKine2[0][1] === q или rusKeyboardLine3[0][2]) идет в id клавиши в HTML
 
@@ -16,7 +18,10 @@ class Keyboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      l1: [], l2: [], l3: [], l4: []
+      l1: [],
+      l2: [],
+      l3: [],
+      l4: []
     }
   }
 
@@ -38,10 +43,12 @@ class Keyboard extends React.Component {
     if (this.props.lang !== prevProps.lang) { //Если изменился язык, меняется раскладка
       this.componentDidMount();
     }
-    if (prevProps.next[0] !== this.props.next[0]) { //добавляет и убирает вспомогательный эффект по this.props.next
+    if (prevProps.next[0] === " " || this.props.next[0] === " ")
+      document.getElementById("space").classList.toggle("helpEffect");
+    /*if (prevProps.next[0] !== this.props.next[0]) { //добавляет и убирает вспомогательный эффект по this.props.next
       helpEffect(prevProps.next[0], prevProps.lang);
       helpEffect(this.props.next[0], this.props.lang, prevProps.next[0]);
-    }
+    }*/
   }
 
   render() {
@@ -49,27 +56,27 @@ class Keyboard extends React.Component {
       <div className="keyboard">
         <div className="keyboardLine">
           {this.state.l1.map((el, i) => (
-            <KeyboardButton elem={el} key={i}/>
+            <KeyboardButton elem={el} key={i} next={this.props.next}/>
           ))}
           <div className="backspace">Backspace</div>
         </div>
         <div className="keyboardLine">
           <div className="tab">Tab</div>
           {this.state.l2.map((el, i) => (
-            <KeyboardButton elem={el} key={i}/>
+            <KeyboardButton elem={el} key={i} next={this.props.next}/>
           ))}
         </div>
         <div className="keyboardLine">
           <div className="capsLock">Caps lock</div>
           {this.state.l3.map((el, i) => (
-            <KeyboardButton elem={el} key={i}/>
+            <KeyboardButton elem={el} key={i} next={this.props.next}/>
           ))}
           <div className="enter">Enter</div>
         </div>
         <div className="keyboardLine">
           <div className="shift" id="lShift">Shift</div>
           {this.state.l4.map((el, i) => (
-            <KeyboardButton elem={el} key={i}/>
+            <KeyboardButton elem={el} key={i} next={this.props.next}/>
           ))}
           <div className="shift" id="rShift">Shift</div>
         </div>
@@ -81,10 +88,18 @@ class Keyboard extends React.Component {
   }
 }
 
+export default Keyboard;
+
+
+
+//Теперь кнопки сами добавляют себе классы, если им нужны
+
+/*ИСПРАВЛЕНО, СНИЗУ ПЛОХОЙ КОД*/
+
 // Можно было проще, но сразу не догадался
 // Может быть когда-нибудь переделаю, но не сейчас
 // Нужно было писать этот метод в компоненте KeyboardButton.js, тогда не обязательно было бы использовать id в html
-function helpEffect(letter, lang, prev) {
+/*function helpEffect(letter, lang, prev) {
   if (letter === undefined) {}//общие правила
   else if (letter === " ") {
     hand("space", toEng(prev));
@@ -95,7 +110,7 @@ function helpEffect(letter, lang, prev) {
     hand("rShift"); // и для shift
     document.getElementById("b1").classList.toggle("helpEffect"); //клавиши также подсвечиваются
     document.getElementById("rShift").classList.toggle("helpEffect");
-  }/******************************************************************/
+  }
   else if (lang[0] === "E") { //Только для английской клавиатуры
     if (letter === "\"") {
       hand("b'");
@@ -135,7 +150,7 @@ function helpEffect(letter, lang, prev) {
         document.getElementById("b" + letter).classList.toggle("helpEffect");
       }
     }
-  } /******************************************************************/
+  } 
   else if (lang[0] === "Р") { //Только для Русской клавиатуры
     if (letter === "\"") {
       hand("b2");
@@ -203,7 +218,7 @@ function helpEffect(letter, lang, prev) {
         document.getElementById("b" + toEng(letter)).classList.toggle("helpEffect");
       }
     }
-  } /******************************************************************/
+  }
 }
 
 function hand(l, prev) { //добавляет и убирает эффект руки (добавлением класса css)
@@ -271,5 +286,7 @@ function toEng(l) { //для каждого пердусмотренного с�
     case "ю": return "."; case ".": return "/";
     default: return l;
   }
-}
-export default Keyboard;
+}*/
+
+
+

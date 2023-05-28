@@ -6,7 +6,7 @@ body {
   background-color: #808A9F;
   display: block;
   color: #eee;
-  min-width: 900px;
+  min-width: 780px;
 }
 
 input{
@@ -119,15 +119,18 @@ header {
 /*Keyboard styles*/
 
 .keyboard {
-  max-width: 780px;
-  margin: 50px auto 110px;
+  width: 780px;
+  height: 260px;
+  margin: 50px auto 120px;
   font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .keyboardLine {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 4px;
 }
 
 .but {
@@ -176,10 +179,10 @@ header {
 
 /* Hands */
 
-.hand1 {
+.h1 {
   display:block;
 }
-.hand1::after {
+.h1::after {
   content: "";
   background-image: url('./img/hand1.png');
   width: 85px;
@@ -191,10 +194,10 @@ header {
   z-index: 5;
   display:block;
 }
-.hand2 {
+.h2 {
   display:block;
 }
-.hand2::after {
+.h2::after {
   content: "";
   background-image: url('./img/hand2.png');
   width: 85px;
@@ -206,10 +209,10 @@ header {
   z-index: 5;
   display:block;
 }
-.hand3 {
+.h3 {
   display:block;
 }
-.hand3::after {
+.h3::after {
   content: "";
   background-image: url('./img/hand3.png');
   width: 85px;
@@ -221,10 +224,10 @@ header {
   z-index: 5;
   display:block;
 }
-.hand4 {
+.h4 {
   display:block;
 }
-.hand4::after {
+.h4::after {
   content: "";
   background-image: url('./img/hand4.png');
   width: 85px;
@@ -236,10 +239,10 @@ header {
   z-index: 5;
   display:block;
 }
-.hand5 {
+.h5 {
   display:block;
 }
-.hand5::after {
+.h5::after {
   content: "";
   background-image: url('./img/hand5.png');
   width: 85px;
@@ -251,10 +254,10 @@ header {
   z-index: 5;
   display:block;
 }
-.hand6 {
+.h6 {
   display:block;
 }
-.hand6::after {
+.h6::after {
   content: "";
   background-image: url('./img/hand6.png');
   width: 85px;
@@ -266,10 +269,10 @@ header {
   z-index: 5;
   display:block;
 }
-.hand7 {
+.h7 {
   display:block;
 }
-.hand7::after {
+.h7::after {
   content: "";
   background-image: url('./img/hand7.png');
   width: 85px;
@@ -281,10 +284,10 @@ header {
   z-index: 5;
   display:block;
 }
-.hand8 {
+.h8 {
   display:block;
 }
-.hand8::after {
+.h8::after {
   content: "";
   background-image: url('./img/hand8.png');
   width: 85px;
@@ -296,10 +299,10 @@ header {
   z-index: 5;
   display:block;
 }
-.hand9 {
+.h9 {
   display:block;
 }
-.hand9::after {
+.h9::after {
   content: "";
   background-image: url('./img/hand9.png');
   width: 85px;
@@ -311,10 +314,10 @@ header {
   z-index: 5;
   display:block;
 }
-.hand10 {
+.h10 {
   display:block;
 }
-.hand10::after {
+.h10::after {
   content: "";
   background-image: url('./img/hand10.png');
   width: 85px;
@@ -331,9 +334,10 @@ header {
 footer {
   background-color: #5b4a73;
   display: flex;
+  justify-content: space-between;
+  align-self: flex-end;
 }
 footer > div {
-  flex: 1;
   padding: 40px 80px;
 }
 .footer-info {
